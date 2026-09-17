@@ -451,17 +451,35 @@
       background: #161619;
     }
 
-    .profile-card > img {
+    .profile-card.is-interactive {
+      touch-action: pan-y pinch-zoom;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .profile-card.is-dragging { cursor: grabbing; }
+
+    .profile-photos {
+      display: flex;
+      height: 100%;
+      transform: translateX(calc(var(--photo-index, 0) * -100% + var(--photo-drag, 0px)));
+      transition: transform 300ms ease;
+    }
+
+    .is-dragging .profile-photos { transition: none; }
+
+    .profile-photos > img {
+      flex: 0 0 100%;
+      min-width: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
       filter: saturate(0.85) contrast(1.05);
-      transition: transform 900ms var(--ease), filter 500ms ease;
+      transition: filter 500ms ease;
     }
 
-    .hero-visual:hover .profile-card > img {
-      transform: scale(1.025);
+    .hero-visual:hover .profile-photos > img {
       filter: saturate(1) contrast(1.05);
     }
 
@@ -484,21 +502,63 @@
 
     .photo-progress {
       position: absolute;
-      top: 13px;
+      top: 3px;
       right: 13px;
       left: 13px;
       z-index: 3;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 5px;
     }
 
-    .photo-progress span {
+    .photo-progress button {
+      display: grid;
+      align-items: center;
+      height: 24px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .photo-progress button::after {
+      content: "";
       height: 3px;
       background: rgba(255, 255, 255, 0.28);
     }
 
-    .photo-progress span:first-child { background: var(--primary); }
+    .photo-progress button[aria-current="true"]::after { background: var(--primary); }
+
+    .photo-arrow {
+      position: absolute;
+      top: 43%;
+      z-index: 4;
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(0, 0, 0, 0.42);
+      color: var(--fg);
+      font: 24px/1 var(--sans);
+      cursor: pointer;
+    }
+
+    .photo-arrow:hover { background: rgba(0, 0, 0, 0.7); }
+    .photo-arrow-prev { left: 12px; }
+    .photo-arrow-next { right: 12px; }
+    .photo-arrow:disabled { opacity: 0.3; cursor: default; }
+    .photo-progress[hidden], .photo-arrow[hidden] { display: none; }
+
+    .photo-status {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
 
     .nearby-tag {
       position: absolute;
@@ -1474,9 +1534,20 @@
       <div class="hero-visual reveal delay-1 is-visible" id="hero-visual">
         <span class="visual-index" aria-hidden="true">/ Discover · Match · Move</span>
         <div class="profile-frame">
-          <div class="profile-card">
-            <img src="assets/pace-runners.webp" width="1000" height="1250" alt="Zwei Athlet:innen laufen gemeinsam auf einer Bahn" fetchpriority="high">
-            <div class="photo-progress" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div class="profile-card" role="region" aria-roledescription="Karussell" aria-label="Beispielfotos von Paul" tabindex="0">
+            <div class="profile-photos" id="profile-photos">
+              <img src="assets/pace-runners.webp" width="1000" height="1250" alt="Zwei Athlet:innen laufen gemeinsam auf einer Bahn" fetchpriority="high" draggable="false">
+              <img src="assets/pace-cycling.png" width="1122" height="1402" alt="Paul mit seinem Rennrad bei einer Ausfahrt" loading="lazy" decoding="async" draggable="false" aria-hidden="true">
+              <img src="assets/pace-hiking.png" width="1122" height="1402" alt="Paul beim Wandern in den Bergen" loading="lazy" decoding="async" draggable="false" aria-hidden="true">
+            </div>
+            <div class="photo-progress" role="group" aria-label="Foto auswählen" hidden>
+              <button type="button" aria-label="Foto 1 von 3 anzeigen" aria-controls="profile-photos" aria-current="true"></button>
+              <button type="button" aria-label="Foto 2 von 3 anzeigen" aria-controls="profile-photos" aria-current="false"></button>
+              <button type="button" aria-label="Foto 3 von 3 anzeigen" aria-controls="profile-photos" aria-current="false"></button>
+            </div>
+            <button class="photo-arrow photo-arrow-prev" type="button" aria-label="Vorheriges Foto" aria-controls="profile-photos" hidden disabled><span aria-hidden="true">‹</span></button>
+            <button class="photo-arrow photo-arrow-next" type="button" aria-label="Nächstes Foto" aria-controls="profile-photos" hidden><span aria-hidden="true">›</span></button>
+            <span class="photo-status" role="status" aria-live="polite" aria-atomic="true">Foto 1 von 3</span>
             <span class="nearby-tag">[ 12 near you ]</span>
             <div class="profile-copy">
               <div class="sport-line">Running · Lv 4</div>
@@ -1890,8 +1961,71 @@
       }
 
       const visual = document.getElementById("hero-visual");
+      const profileCard = visual.querySelector(".profile-card");
+      const photos = [...profileCard.querySelectorAll(".profile-photos > img")];
+      const photoButtons = [...profileCard.querySelectorAll(".photo-progress button")];
+      const previousPhoto = profileCard.querySelector(".photo-arrow-prev");
+      const nextPhoto = profileCard.querySelector(".photo-arrow-next");
+      const photoStatus = profileCard.querySelector(".photo-status");
+      let photoIndex = 0;
+      let photoGesture = null;
+
+      const showPhoto = (index) => {
+        photoIndex = Math.max(0, Math.min(photos.length - 1, index));
+        profileCard.style.setProperty("--photo-index", photoIndex);
+        photos.forEach((photo, index) => photo.setAttribute("aria-hidden", String(index !== photoIndex)));
+        photoButtons.forEach((button, index) => button.setAttribute("aria-current", String(index === photoIndex)));
+        previousPhoto.disabled = photoIndex === 0;
+        nextPhoto.disabled = photoIndex === photos.length - 1;
+        photoStatus.textContent = `Foto ${photoIndex + 1} von ${photos.length}`;
+      };
+
+      photoButtons.forEach((button, index) => button.addEventListener("click", () => showPhoto(index)));
+      previousPhoto.addEventListener("click", () => showPhoto(photoIndex - 1));
+      nextPhoto.addEventListener("click", () => showPhoto(photoIndex + 1));
+      profileCard.addEventListener("keydown", (event) => {
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+        if (event.key === "Home") showPhoto(0);
+        else if (event.key === "End") showPhoto(photos.length - 1);
+        else showPhoto(photoIndex + (event.key === "ArrowRight" ? 1 : -1));
+      });
+
+      profileCard.addEventListener("pointerdown", (event) => {
+        if (!event.isPrimary || event.button !== 0 || event.target.closest("button")) return;
+        photoGesture = { id: event.pointerId, x: event.clientX, y: event.clientY };
+        profileCard.setPointerCapture(event.pointerId);
+      });
+      profileCard.addEventListener("pointermove", (event) => {
+        if (!photoGesture || event.pointerId !== photoGesture.id) return;
+        const dx = event.clientX - photoGesture.x;
+        const dy = event.clientY - photoGesture.y;
+        if (!profileCard.classList.contains("is-dragging") && Math.abs(dx) <= Math.max(8, Math.abs(dy))) return;
+        profileCard.classList.add("is-dragging");
+        const atEdge = (photoIndex === 0 && dx > 0) || (photoIndex === photos.length - 1 && dx < 0);
+        const drag = Math.max(-profileCard.clientWidth, Math.min(profileCard.clientWidth, dx));
+        profileCard.style.setProperty("--photo-drag", `${atEdge ? drag * 0.2 : drag}px`);
+      });
+      const finishPhotoGesture = (event) => {
+        if (!photoGesture || event.pointerId !== photoGesture.id) return;
+        const dx = event.clientX - photoGesture.x;
+        const dy = event.clientY - photoGesture.y;
+        const threshold = Math.min(60, profileCard.clientWidth * 0.15);
+        if (event.type === "pointerup" && Math.abs(dx) > threshold && Math.abs(dx) > Math.abs(dy)) {
+          showPhoto(photoIndex + (dx < 0 ? 1 : -1));
+        }
+        photoGesture = null;
+        profileCard.classList.remove("is-dragging");
+        profileCard.style.removeProperty("--photo-drag");
+        if (profileCard.hasPointerCapture(event.pointerId)) profileCard.releasePointerCapture(event.pointerId);
+      };
+      ["pointerup", "pointercancel", "lostpointercapture"].forEach((type) => profileCard.addEventListener(type, finishPhotoGesture));
+      profileCard.classList.add("is-interactive");
+      profileCard.querySelectorAll(".photo-progress, .photo-arrow").forEach((control) => { control.hidden = false; });
+
       if (!reducedMotion.matches && window.matchMedia("(pointer: fine)").matches) {
         visual.addEventListener("pointermove", (event) => {
+          if (photoGesture) return;
           const rect = visual.getBoundingClientRect();
           const x = (event.clientX - rect.left) / rect.width - 0.5;
           const y = (event.clientY - rect.top) / rect.height - 0.5;
