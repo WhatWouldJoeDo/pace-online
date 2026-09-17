@@ -648,7 +648,10 @@
     .ticker-track {
       display: flex;
       width: max-content;
-      animation: ticker 30s linear infinite;
+    }
+
+    .ticker-track.is-ready {
+      animation: ticker var(--ticker-duration) linear infinite;
     }
 
     .ticker-group {
@@ -1500,10 +1503,138 @@
     <section class="ticker" aria-label="Sportarten bei Pace">
       <div class="ticker-track">
         <div class="ticker-group">
-          <span class="ticker-item">Running</span><span class="ticker-item">Rennrad</span><span class="ticker-item">Gravel</span><span class="ticker-item">MTB</span><span class="ticker-item">Schwimmen</span><span class="ticker-item">Tennis</span><span class="ticker-item">Wandern</span><span class="ticker-item">Padel</span><span class="ticker-item">Triathlon</span>
-        </div>
-        <div class="ticker-group" aria-hidden="true">
-          <span class="ticker-item">Running</span><span class="ticker-item">Rennrad</span><span class="ticker-item">Gravel</span><span class="ticker-item">MTB</span><span class="ticker-item">Schwimmen</span><span class="ticker-item">Tennis</span><span class="ticker-item">Wandern</span><span class="ticker-item">Padel</span><span class="ticker-item">Triathlon</span>
+          <span class="ticker-item" data-sport-id="running">Running</span>
+          <span class="ticker-item" data-sport-id="cycling_road">Cycling — Road</span>
+          <span class="ticker-item" data-sport-id="cycling_gravel">Cycling — Gravel</span>
+          <span class="ticker-item" data-sport-id="cycling_mtb">Cycling — MTB</span>
+          <span class="ticker-item" data-sport-id="cycling_dh">Cycling — Downhill</span>
+          <span class="ticker-item" data-sport-id="swimming">Swimming</span>
+          <span class="ticker-item" data-sport-id="tennis">Tennis</span>
+          <span class="ticker-item" data-sport-id="hiking">Hiking</span>
+          <span class="ticker-item" data-sport-id="padel">Padel</span>
+          <span class="ticker-item" data-sport-id="triathlon">Triathlon</span>
+          <span class="ticker-item" data-sport-id="strength">Strength training</span>
+          <span class="ticker-item" data-sport-id="basketball">Basketball</span>
+          <span class="ticker-item" data-sport-id="skiing">Skiing</span>
+          <span class="ticker-item" data-sport-id="snowboarding">Snowboarding</span>
+          <span class="ticker-item" data-sport-id="cross_country_skiing">Cross-country skiing</span>
+          <span class="ticker-item" data-sport-id="cross_country_classic">Cross-country skiing (classic)</span>
+          <span class="ticker-item" data-sport-id="cross_country_skating">Cross-country skiing (skating)</span>
+          <span class="ticker-item" data-sport-id="ski_touring">Ski touring</span>
+          <span class="ticker-item" data-sport-id="ice_skating">Ice skating</span>
+          <span class="ticker-item" data-sport-id="motorcycling">Motorcycling</span>
+          <span class="ticker-item" data-sport-id="pickleball">Pickleball</span>
+          <span class="ticker-item" data-sport-id="squash">Squash</span>
+          <span class="ticker-item" data-sport-id="crossminton">Crossminton</span>
+          <span class="ticker-item" data-sport-id="football">Football</span>
+          <span class="ticker-item" data-sport-id="handball">Handball</span>
+          <span class="ticker-item" data-sport-id="volleyball">Volleyball</span>
+          <span class="ticker-item" data-sport-id="beach_volleyball">Beach volleyball</span>
+          <span class="ticker-item" data-sport-id="badminton">Badminton</span>
+          <span class="ticker-item" data-sport-id="table_tennis">Table tennis</span>
+          <span class="ticker-item" data-sport-id="golf">Golf</span>
+          <span class="ticker-item" data-sport-id="american_football">American football</span>
+          <span class="ticker-item" data-sport-id="flag_football">Flag football</span>
+          <span class="ticker-item" data-sport-id="rugby">Rugby</span>
+          <span class="ticker-item" data-sport-id="futsal">Futsal</span>
+          <span class="ticker-item" data-sport-id="baseball">Baseball</span>
+          <span class="ticker-item" data-sport-id="softball">Softball</span>
+          <span class="ticker-item" data-sport-id="field_hockey">Field hockey</span>
+          <span class="ticker-item" data-sport-id="ice_hockey">Ice hockey</span>
+          <span class="ticker-item" data-sport-id="lacrosse">Lacrosse</span>
+          <span class="ticker-item" data-sport-id="floorball">Floorball</span>
+          <span class="ticker-item" data-sport-id="ultimate_frisbee">Ultimate frisbee</span>
+          <span class="ticker-item" data-sport-id="cricket">Cricket</span>
+          <span class="ticker-item" data-sport-id="water_polo">Water polo</span>
+          <span class="ticker-item" data-sport-id="crossfit">CrossFit</span>
+          <span class="ticker-item" data-sport-id="hyrox">Hyrox</span>
+          <span class="ticker-item" data-sport-id="calisthenics">Calisthenics</span>
+          <span class="ticker-item" data-sport-id="bodybuilding">Bodybuilding</span>
+          <span class="ticker-item" data-sport-id="weightlifting">Weightlifting</span>
+          <span class="ticker-item" data-sport-id="indoor_cycling">Indoor cycling</span>
+          <span class="ticker-item" data-sport-id="yoga">Yoga</span>
+          <span class="ticker-item" data-sport-id="pilates">Pilates</span>
+          <span class="ticker-item" data-sport-id="mobility_training">Mobility training</span>
+          <span class="ticker-item" data-sport-id="zumba">Zumba</span>
+          <span class="ticker-item" data-sport-id="trail_running">Trail running</span>
+          <span class="ticker-item" data-sport-id="athletics">Athletics</span>
+          <span class="ticker-item" data-sport-id="orienteering">Orienteering</span>
+          <span class="ticker-item" data-sport-id="obstacle_running">Obstacle course racing</span>
+          <span class="ticker-item" data-sport-id="walking">Walking</span>
+          <span class="ticker-item" data-sport-id="nordic_walking">Nordic walking</span>
+          <span class="ticker-item" data-sport-id="climbing">Climbing</span>
+          <span class="ticker-item" data-sport-id="bouldering">Bouldering</span>
+          <span class="ticker-item" data-sport-id="via_ferrata">Via ferrata</span>
+          <span class="ticker-item" data-sport-id="trekking">Trekking</span>
+          <span class="ticker-item" data-sport-id="parkour">Parkour</span>
+          <span class="ticker-item" data-sport-id="freerunning">Freerunning</span>
+          <span class="ticker-item" data-sport-id="slacklining">Slacklining</span>
+          <span class="ticker-item" data-sport-id="skateboarding">Skateboarding</span>
+          <span class="ticker-item" data-sport-id="longboarding">Longboarding</span>
+          <span class="ticker-item" data-sport-id="inline_skating">Inline skating</span>
+          <span class="ticker-item" data-sport-id="bmx">BMX</span>
+          <span class="ticker-item" data-sport-id="dirt_jump">Dirt jump</span>
+          <span class="ticker-item" data-sport-id="cyclocross">Cyclocross</span>
+          <span class="ticker-item" data-sport-id="track_cycling">Track cycling</span>
+          <span class="ticker-item" data-sport-id="bikepacking">Bikepacking</span>
+          <span class="ticker-item" data-sport-id="e_bike">E-biking</span>
+          <span class="ticker-item" data-sport-id="surfing">Surfing</span>
+          <span class="ticker-item" data-sport-id="windsurfing">Windsurfing</span>
+          <span class="ticker-item" data-sport-id="kitesurfing">Kitesurfing</span>
+          <span class="ticker-item" data-sport-id="wingfoiling">Wingfoiling</span>
+          <span class="ticker-item" data-sport-id="stand_up_paddling">Stand-up paddling</span>
+          <span class="ticker-item" data-sport-id="kayaking">Kayaking</span>
+          <span class="ticker-item" data-sport-id="canoeing">Canoeing</span>
+          <span class="ticker-item" data-sport-id="rowing">Rowing</span>
+          <span class="ticker-item" data-sport-id="sailing">Sailing</span>
+          <span class="ticker-item" data-sport-id="wakeboarding">Wakeboarding</span>
+          <span class="ticker-item" data-sport-id="water_skiing">Water skiing</span>
+          <span class="ticker-item" data-sport-id="diving">Scuba diving</span>
+          <span class="ticker-item" data-sport-id="freediving">Freediving</span>
+          <span class="ticker-item" data-sport-id="snorkeling">Snorkeling</span>
+          <span class="ticker-item" data-sport-id="open_water_swimming">Open-water swimming</span>
+          <span class="ticker-item" data-sport-id="rafting">Rafting</span>
+          <span class="ticker-item" data-sport-id="canyoning">Canyoning</span>
+          <span class="ticker-item" data-sport-id="snowshoeing">Snowshoeing</span>
+          <span class="ticker-item" data-sport-id="freeskiing">Freeskiing</span>
+          <span class="ticker-item" data-sport-id="snowkiting">Snowkiting</span>
+          <span class="ticker-item" data-sport-id="biathlon">Biathlon</span>
+          <span class="ticker-item" data-sport-id="curling">Curling</span>
+          <span class="ticker-item" data-sport-id="sledding">Sledding</span>
+          <span class="ticker-item" data-sport-id="speed_skating">Speed skating</span>
+          <span class="ticker-item" data-sport-id="boxing">Boxing</span>
+          <span class="ticker-item" data-sport-id="kickboxing">Kickboxing</span>
+          <span class="ticker-item" data-sport-id="muay_thai">Muay Thai</span>
+          <span class="ticker-item" data-sport-id="mma">MMA</span>
+          <span class="ticker-item" data-sport-id="brazilian_jiu_jitsu">Brazilian jiu-jitsu</span>
+          <span class="ticker-item" data-sport-id="judo">Judo</span>
+          <span class="ticker-item" data-sport-id="karate">Karate</span>
+          <span class="ticker-item" data-sport-id="taekwondo">Taekwondo</span>
+          <span class="ticker-item" data-sport-id="krav_maga">Krav Maga</span>
+          <span class="ticker-item" data-sport-id="wrestling">Wrestling</span>
+          <span class="ticker-item" data-sport-id="capoeira">Capoeira</span>
+          <span class="ticker-item" data-sport-id="kung_fu">Kung fu</span>
+          <span class="ticker-item" data-sport-id="aikido">Aikido</span>
+          <span class="ticker-item" data-sport-id="fencing">Fencing</span>
+          <span class="ticker-item" data-sport-id="gymnastics">Gymnastics</span>
+          <span class="ticker-item" data-sport-id="trampoline_gymnastics">Trampoline gymnastics</span>
+          <span class="ticker-item" data-sport-id="cheerleading">Cheerleading</span>
+          <span class="ticker-item" data-sport-id="dancing">Dancing</span>
+          <span class="ticker-item" data-sport-id="breaking">Breaking</span>
+          <span class="ticker-item" data-sport-id="salsa">Salsa</span>
+          <span class="ticker-item" data-sport-id="ballet">Ballet</span>
+          <span class="ticker-item" data-sport-id="contemporary_dance">Contemporary dance</span>
+          <span class="ticker-item" data-sport-id="pole_sport">Pole sport</span>
+          <span class="ticker-item" data-sport-id="horse_riding">Horse riding</span>
+          <span class="ticker-item" data-sport-id="equestrian_vaulting">Equestrian vaulting</span>
+          <span class="ticker-item" data-sport-id="archery">Archery</span>
+          <span class="ticker-item" data-sport-id="sport_shooting">Sport shooting</span>
+          <span class="ticker-item" data-sport-id="bowling">Bowling</span>
+          <span class="ticker-item" data-sport-id="nine_pin_bowling">Nine-pin bowling</span>
+          <span class="ticker-item" data-sport-id="billiards">Billiards</span>
+          <span class="ticker-item" data-sport-id="darts">Darts</span>
+          <span class="ticker-item" data-sport-id="disc_golf">Disc golf</span>
+          <span class="ticker-item" data-sport-id="other">Other</span>
         </div>
       </div>
     </section>
@@ -1699,6 +1830,22 @@
       const menuButton = document.querySelector(".menu-button");
       const mobileNav = document.getElementById("mobile-nav");
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      const tickerTrack = document.querySelector(".ticker-track");
+      const tickerGroup = tickerTrack.querySelector(".ticker-group");
+      // Keep one source list; the hidden copy makes the scrolling loop seamless.
+      const tickerCopy = tickerGroup.cloneNode(true);
+      tickerCopy.setAttribute("aria-hidden", "true");
+      tickerTrack.appendChild(tickerCopy);
+
+      // Keep a readable, constant speed regardless of list length or screen size.
+      const updateTickerDuration = () => {
+        tickerTrack.style.setProperty("--ticker-duration", `${tickerGroup.getBoundingClientRect().width / 50}s`);
+      };
+      updateTickerDuration();
+      tickerTrack.classList.add("is-ready");
+      document.fonts.ready.then(updateTickerDuration);
+      window.addEventListener("resize", updateTickerDuration, { passive: true });
 
       const updateHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 16);
       updateHeader();
