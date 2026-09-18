@@ -24,7 +24,8 @@ Reviewed on 18 September 2026. Scope: `index.html`, `privacy.html`,
 
 - Secondary text uses `#a1a1aa`: 7.76:1 against `#09090b`. Profile text has a
   darker gradient backing for readability across the three photos.
-- The ticker has a persistent pause/resume button and a full-list view. Reduced
+- The ticker has a small pause/play icon on the lime background, with a 36 × 36 px
+  hit area and an accessible action label. There is no show-all button. Reduced
   motion and JavaScript-disabled modes expose the complete static list with
   vertical scrolling. The decorative pulse ends after 4.2 seconds.
 - The mobile menu makes background content inert, contains Tab/Shift+Tab,

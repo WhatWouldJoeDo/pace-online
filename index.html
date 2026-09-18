@@ -756,18 +756,23 @@
       order: 0;
     }
 
-    .ticker-controls { display: flex; gap: 6px; padding: 8px 12px; }
-    .ticker-controls[hidden], .ticker-controls button[hidden] { display: none; }
-    .ticker-controls button {
-      min-width: 36px;
-      min-height: 36px;
-      padding: 8px;
-      border: 1px solid var(--bg);
-      background: var(--bg);
-      color: var(--primary);
-      font: 500 11px/1.2 var(--mono);
+    .ticker-controls { flex: none; padding: 4px 8px; }
+    .ticker-controls[hidden] { display: none; }
+    .ticker-pause {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--bg);
       cursor: pointer;
     }
+
+    .ticker-pause svg { width: 12px; height: 12px; fill: currentColor; }
+    .ticker-play-icon, .ticker.is-paused .ticker-pause-icon { display: none; }
+    .ticker.is-paused .ticker-play-icon { display: block; }
 
     .ticker-group {
       display: flex;
@@ -1769,8 +1774,12 @@
         </div>
       </div>
       <div class="ticker-controls" hidden>
-        <button class="ticker-pause" type="button" aria-label="Sportarten pausieren" title="Sportarten pausieren" aria-controls="sports-list">Ⅱ</button>
-        <button class="ticker-expand" type="button" aria-expanded="false" aria-controls="sports-list">Alle anzeigen</button>
+        <button class="ticker-pause" type="button" aria-label="Sportarten pausieren" title="Sportarten pausieren" aria-controls="sports-list">
+          <svg viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+            <path class="ticker-pause-icon" d="M2 1h3v10H2zm5 0h3v10H7z"/>
+            <path class="ticker-play-icon" d="M3 1l8 5-8 5z"/>
+          </svg>
+        </button>
       </div>
     </section>
 
@@ -1970,10 +1979,8 @@
       const ticker = document.querySelector(".ticker");
       const tickerTrack = ticker.querySelector(".ticker-track");
       const tickerPause = ticker.querySelector(".ticker-pause");
-      const tickerExpand = ticker.querySelector(".ticker-expand");
       const tickerControls = ticker.querySelector(".ticker-controls");
       let tickerPaused = false;
-      let tickerExpanded = false;
       const tickerGroup = tickerTrack.querySelector(".ticker-group");
       // Keep one source list; the hidden copy makes the scrolling loop seamless.
       const tickerCopy = tickerGroup.cloneNode(true);
@@ -1986,12 +1993,8 @@
         tickerTrack.style.setProperty("--ticker-duration", `${tickerGroup.getBoundingClientRect().width / 50}s`);
       };
       const updateTicker = () => {
-        const expanded = tickerExpanded || reducedMotion.matches;
-        ticker.classList.toggle("is-scrolling", !expanded);
+        ticker.classList.toggle("is-scrolling", !reducedMotion.matches);
         ticker.classList.toggle("is-paused", tickerPaused);
-        tickerPause.hidden = expanded;
-        tickerExpand.setAttribute("aria-expanded", String(expanded));
-        tickerExpand.textContent = expanded ? "Liste schließen" : "Alle anzeigen";
         // Reduced motion and no-JS users get the complete, scrollable static list.
         tickerControls.hidden = reducedMotion.matches;
         updateTickerDuration();
@@ -2001,11 +2004,6 @@
         const label = tickerPaused ? "Sportarten fortsetzen" : "Sportarten pausieren";
         tickerPause.setAttribute("aria-label", label);
         tickerPause.title = label;
-        tickerPause.textContent = tickerPaused ? "▶" : "Ⅱ";
-        updateTicker();
-      });
-      tickerExpand.addEventListener("click", () => {
-        tickerExpanded = !tickerExpanded;
         updateTicker();
       });
       reducedMotion.addEventListener("change", () => {
