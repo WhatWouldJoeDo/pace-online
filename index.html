@@ -493,7 +493,9 @@
     }
 
     .profile-card::before {
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.96) 0%, rgba(0, 0, 0, 0.3) 45%, transparent 72%);
+      top: auto;
+      height: 220px;
+      background: linear-gradient(to top, rgba(9, 9, 11, 0.96), rgba(0, 0, 0, 0.1), transparent);
     }
 
     .profile-card::after {
@@ -531,7 +533,8 @@
 
     .photo-arrow {
       position: absolute;
-      top: 43%;
+      top: 25%;
+      transform: translateY(-50%);
       z-index: 4;
       display: grid;
       place-items: center;
@@ -560,28 +563,21 @@
       white-space: nowrap;
     }
 
-    .nearby-tag {
-      position: absolute;
-      top: 28px;
-      right: 13px;
-      z-index: 3;
-      padding: 6px 8px;
-      background: rgba(0, 0, 0, 0.52);
-      color: rgba(255, 255, 255, 0.72);
-      font: 500 8px/1 var(--mono);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      -webkit-backdrop-filter: blur(8px);
-      backdrop-filter: blur(8px);
-    }
-
     .profile-copy {
       position: absolute;
       right: 0;
       bottom: 0;
       left: 0;
       z-index: 3;
-      padding: 26px;
+      display: grid;
+      gap: 12px;
+      padding: 48px 12px 8px;
+      pointer-events: none;
+    }
+
+    .profile-heading {
+      padding: 0 8px;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8));
     }
 
     .sport-line {
@@ -589,76 +585,94 @@
       align-items: center;
       gap: 8px;
       color: var(--primary);
-      font: 700 10px/1 var(--mono);
+      margin-bottom: 8px;
+      font: 400 11px/1.5 var(--mono);
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
 
     .sport-line::before {
-      width: 23px;
+      width: 24px;
       height: 2px;
       content: "";
       background: var(--primary);
     }
 
     .profile-name {
-      margin: 9px 0 0;
-      font: 400 clamp(42px, 5vw, 58px)/0.92 var(--display);
-      letter-spacing: -0.035em;
+      margin: 0;
+      font: 400 48px/0.95 var(--display);
+      letter-spacing: -0.025em;
       text-transform: uppercase;
     }
 
     .profile-distance {
       margin: 8px 0 0;
-      color: rgba(255, 255, 255, 0.68);
-      font: 500 9px/1.2 var(--mono);
-      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.7);
+      font: 400 10px/1.5 var(--mono);
+      letter-spacing: 0.05em;
       text-transform: uppercase;
     }
 
     .profile-tags {
       display: flex;
-      flex-wrap: wrap;
       gap: 6px;
-      margin-top: 16px;
-      margin-bottom: 0;
+      margin: 0;
       padding: 0;
       list-style: none;
     }
 
     .profile-tags li {
-      padding: 7px 9px;
-      border: 1px solid rgba(255, 255, 255, 0.24);
-      background: rgba(0, 0, 0, 0.3);
-      font: 500 8px/1 var(--mono);
-      letter-spacing: 0.09em;
+      flex-shrink: 0;
+      padding: 4px 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.8);
+      font: 400 9px/1.5 var(--mono);
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       -webkit-backdrop-filter: blur(6px);
       backdrop-filter: blur(6px);
     }
 
     .mock-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      padding-top: 10px;
-    }
-
-    .mock-action {
-      padding: 15px 12px;
-      border: 1px solid var(--line-strong);
-      color: rgba(255, 255, 255, 0.7);
-      font: 400 18px/1 var(--display);
-      text-align: center;
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      padding: 0 20px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.025);
+      font: 400 11px/1.5 var(--mono);
+      letter-spacing: 0.2em;
       text-transform: uppercase;
     }
 
-    .mock-action.match {
-      border-color: var(--primary);
-      background: var(--primary);
-      color: var(--bg);
-      box-shadow: 0 0 36px rgba(217, 255, 0, 0.16);
+    .mock-actions::before {
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      border-radius: inherit;
+      background: linear-gradient(105deg, rgba(150, 150, 150, 0.4), rgba(217, 255, 0, 0.2) 45%, rgba(217, 255, 0, 0.85));
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      content: "";
     }
+
+    .mock-actions::after {
+      position: absolute;
+      inset: 4px 0 4px 50%;
+      z-index: -1;
+      border-radius: 12px;
+      background: linear-gradient(to right, transparent, rgba(217, 255, 0, 0.25));
+      opacity: 0.15;
+      filter: blur(16px);
+      content: "";
+    }
+
+    .mock-action { color: rgb(150, 150, 150); }
+    .mock-action.match { color: rgb(180, 195, 115); }
 
     .floating-card {
       position: absolute;
@@ -1416,10 +1430,6 @@
       .hero-visual { width: calc(100% - 18px); }
       .visual-index { display: none; }
       .profile-frame { padding: 8px; }
-      .profile-copy { padding: 21px; }
-      .profile-name { font-size: 42px; }
-      .profile-tags li:last-child { display: none; }
-      .mock-action { padding: 14px 10px; font-size: 17px; }
 
       .ticker-item { font-size: 20px; }
       .ticker-item::after { margin: 0 22px; }
@@ -1548,19 +1558,20 @@
             <button class="photo-arrow photo-arrow-prev" type="button" aria-label="Vorheriges Foto" aria-controls="profile-photos" hidden disabled><span aria-hidden="true">‹</span></button>
             <button class="photo-arrow photo-arrow-next" type="button" aria-label="Nächstes Foto" aria-controls="profile-photos" hidden><span aria-hidden="true">›</span></button>
             <span class="photo-status" role="status" aria-live="polite" aria-atomic="true">Foto 1 von 3</span>
-            <span class="nearby-tag">[ 12 near you ]</span>
             <div class="profile-copy">
-              <div class="sport-line">Running · Lv 4</div>
-              <p class="profile-name">Paul, 29</p>
-              <p class="profile-distance">Etwa 5 km entfernt</p>
+              <div class="profile-heading">
+                <div class="sport-line">Running <span>·</span> LV4</div>
+                <p class="profile-name">Paul, 29</p>
+                <p class="profile-distance">Etwa 5 km entfernt</p>
+              </div>
               <ul class="profile-tags">
                 <li>Triathlon</li><li>Cycling</li><li>Swimming</li>
               </ul>
+              <div class="mock-actions" aria-hidden="true">
+                <span class="mock-action">← Pass</span>
+                <span class="mock-action match">Match →</span>
+              </div>
             </div>
-          </div>
-          <div class="mock-actions" aria-hidden="true">
-            <div class="mock-action">Pass</div>
-            <div class="mock-action match">Match</div>
           </div>
         </div>
         <div class="floating-card" aria-hidden="true">
