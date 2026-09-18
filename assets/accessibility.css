@@ -1,0 +1,47 @@
+/* Two-tone focus stays visible on dark surfaces, photos and the lime CTA. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px #09090b;
+}
+
+.photo-progress button:focus-visible {
+  outline-offset: -2px;
+  box-shadow: inset 0 0 0 4px #09090b;
+}
+
+.legal-page .skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 10px 14px;
+  background: #d9ff00;
+  color: #09090b;
+  font-weight: 700;
+  transform: translateY(-200%);
+}
+
+.legal-page .skip-link:focus { transform: translateY(0); }
+.legal-page main { overflow-wrap: anywhere; }
+.legal-page main a { text-decoration: underline; text-underline-offset: 3px; }
+.legal-page .footer-nav a, .legal-page .home-link { min-height: 24px; display: inline-flex; align-items: center; }
+.legal-page input { border-color: #85858e; }
+.legal-page .recover a { display: inline-block; min-height: 24px; padding: 4px 0; }
+.legal-page .msg:empty { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+@media (forced-colors: active) {
+  a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+    outline-color: Highlight;
+  }
+  .statement-title .outline { color: CanvasText; -webkit-text-stroke: 0; }
+  .photo-progress button::after { background: CanvasText; }
+  .photo-progress button[aria-current="true"]::after { background: Highlight; }
+}

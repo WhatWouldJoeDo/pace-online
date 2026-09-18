@@ -93,14 +93,17 @@
   .danger-note p { margin: 0 0 8px; }
   .danger-note p:last-child { margin-bottom: 0; }
 </style>
+<link rel="stylesheet" href="assets/accessibility.css">
 </head>
-<body>
+<body class="legal-page">
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="wrap">
   <header class="legal-header">
     <a class="logo" href="index.html" aria-label="Pace home"><span class="dot"></span>Pace</a>
     <a class="home-link" href="index.html">← Back to Pace</a>
   </header>
 
+  <main id="main" tabindex="-1">
   <h1>Delete <span>Account</span></h1>
   <p class="meta">Permanent deletion of your account and all associated data</p>
 
@@ -126,19 +129,19 @@
     <button type="submit" class="primary" id="login-btn">Sign in</button>
     <div class="hint">Signing in does not delete anything. You will confirm the deletion in the next step.</div>
   </form>
-  <div class="msg hidden" id="login-msg" role="alert"></div>
+  <div class="msg" id="login-msg" role="alert" aria-atomic="true"></div>
 
   <h2><span>/</span> 2. Confirm deletion</h2>
   <div class="hidden" id="delete-panel">
     <p class="hint" id="signed-in-as">Signed in.</p>
-    <div class="danger-note">
+    <div class="danger-note" id="deletion-warning">
       <p><strong>Warning:</strong> this is permanent. Your profile, photos, swipes, matches and messages are deleted immediately and can't be recovered.</p>
       <p>If you have a paid Pace subscription, cancel it in your app store's subscription settings first — deleting your account does not stop store billing.</p>
     </div>
     <label for="confirm">Type <strong>DELETE</strong> to confirm</label>
-    <input id="confirm" name="confirm" type="text" autocomplete="off" placeholder="DELETE">
+    <input id="confirm" name="confirm" type="text" autocomplete="off" placeholder="DELETE" aria-describedby="signed-in-as deletion-warning">
     <button type="button" class="danger" id="delete-btn" disabled>Delete account</button>
-    <div class="msg hidden" id="delete-msg" role="alert"></div>
+    <div class="msg" id="delete-msg" role="alert" aria-atomic="true" tabindex="-1"></div>
   </div>
 
   <p>
@@ -147,15 +150,17 @@
     <a href="mailto:support@pace-online.de">Contact</a>
   </p>
 
-  <div class="footer">
+  </main>
+
+  <footer class="footer">
     Pace — find your training partner. Train together, explore together, get better together.
     <nav class="footer-nav" aria-label="Legal pages">
-      <a href="impressum.html">Impressum</a>
+      <a href="impressum.html" lang="de">Impressum</a>
       <a href="index.html">Home</a>
       <a href="privacy.html">Privacy</a>
       <a href="terms.html">Terms</a>
     </nav>
-  </div>
+  </footer>
 </div>
 
 <script>
@@ -176,6 +181,7 @@
   const deleteMsg = document.getElementById("delete-msg");
 
   let accessToken = null;
+  let accountDeleted = false;
 
   function show(el, ok) {
     el.classList.remove("hidden");
@@ -184,7 +190,7 @@
   }
 
   function hide(el) {
-    el.classList.add("hidden");
+    el.textContent = "";
   }
 
   async function postJson(url, body, headers) {
@@ -203,7 +209,8 @@
 
   function setBusy(btn, busy, label) {
     btn.disabled = busy;
-    btn.textContent = busy ? "…" : label;
+    btn.setAttribute("aria-busy", String(busy));
+    btn.textContent = label;
   }
 
   loginForm.addEventListener("submit", async (e) => {
@@ -228,6 +235,7 @@
       deletePanel.classList.remove("hidden");
       email.disabled = true;
       password.value = "";
+      confirm.focus();
     } catch (err) {
       show(loginMsg, false);
       loginMsg.textContent = "Something went wrong. Please try again.";
@@ -243,6 +251,7 @@
     if (!addr) {
       show(loginMsg, false);
       loginMsg.textContent = "Enter your email address first.";
+      email.focus();
       return;
     }
     try {
@@ -259,11 +268,11 @@
   });
 
   confirm.addEventListener("input", () => {
-    deleteBtn.disabled = confirm.value.trim() !== "DELETE";
+    deleteBtn.disabled = accountDeleted || confirm.value.trim() !== "DELETE";
   });
 
   deleteBtn.addEventListener("click", async () => {
-    if (confirm.value.trim() !== "DELETE" || !accessToken) return;
+    if (accountDeleted || confirm.value.trim() !== "DELETE" || !accessToken) return;
     hide(deleteMsg);
     setBusy(deleteBtn, true, "Deleting…");
 
@@ -274,16 +283,23 @@
         { Authorization: "Bearer " + accessToken }
       );
       if (data && data.ok === true) {
+        accountDeleted = true;
+        accessToken = null;
         deleteBtn.disabled = true;
         confirm.disabled = true;
         show(deleteMsg, true);
         deleteMsg.textContent = "Your account and all associated data have been deleted.";
+        deleteMsg.focus();
         return;
       }
       const message = data && data.message ? data.message : "";
       if (data && data.ok === false && /not found|already/i.test(message)) {
+        accountDeleted = true;
+        accessToken = null;
+        confirm.disabled = true;
         show(deleteMsg, true);
         deleteMsg.textContent = "This account appears to have been deleted already, or was not found.";
+        deleteMsg.focus();
         return;
       }
       show(deleteMsg, false);
@@ -293,6 +309,7 @@
       deleteMsg.textContent = "Could not reach the deletion service. Check your connection and try again.";
     } finally {
       setBusy(deleteBtn, false, "Delete account");
+      deleteBtn.disabled = accountDeleted || confirm.value.trim() !== "DELETE";
     }
   });
 })();

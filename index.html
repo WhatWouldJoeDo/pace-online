@@ -48,6 +48,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 96px;
       background: var(--bg);
     }
 
@@ -281,6 +282,7 @@
       left: 0;
       z-index: 45;
       display: none;
+      overflow-y: auto;
       padding:
         28px
         max(var(--gutter), env(safe-area-inset-right, 0px))
@@ -290,6 +292,8 @@
     }
 
     .mobile-nav.is-open { display: flex; flex-direction: column; }
+
+    .mobile-nav a { flex-shrink: 0; }
 
     .mobile-nav a:not(.button) {
       display: flex;
@@ -395,7 +399,7 @@
       align-items: center;
       gap: 10px;
       margin-top: 22px;
-      color: rgba(255, 255, 255, 0.42);
+      color: var(--muted);
       font: 500 9px/1.4 var(--mono);
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -406,7 +410,7 @@
       height: 6px;
       background: var(--primary);
       box-shadow: 0 0 0 0 rgba(217, 255, 0, 0.4);
-      animation: pulse 2.1s infinite;
+      animation: pulse 2.1s 2;
     }
 
     @keyframes pulse {
@@ -429,7 +433,7 @@
       right: -50px;
       z-index: 5;
       writing-mode: vertical-rl;
-      color: rgba(255, 255, 255, 0.28);
+      color: var(--muted);
       font: 500 9px/1 var(--mono);
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -526,7 +530,8 @@
     .photo-progress button::after {
       content: "";
       height: 3px;
-      background: rgba(255, 255, 255, 0.28);
+      background: #a1a1aa;
+      box-shadow: 0 0 0 1px #09090b;
     }
 
     .photo-progress button[aria-current="true"]::after { background: var(--primary); }
@@ -541,7 +546,7 @@
       width: 40px;
       height: 44px;
       border: 1px solid rgba(255, 255, 255, 0.24);
-      background: rgba(0, 0, 0, 0.42);
+      background: rgba(0, 0, 0, 0.65);
       color: var(--fg);
       font: 24px/1 var(--sans);
       cursor: pointer;
@@ -550,7 +555,7 @@
     .photo-arrow:hover { background: rgba(0, 0, 0, 0.7); }
     .photo-arrow-prev { left: 12px; }
     .photo-arrow-next { right: 12px; }
-    .photo-arrow:disabled { opacity: 0.3; cursor: default; }
+    .photo-arrow[aria-disabled="true"] { opacity: 0.3; cursor: default; }
     .photo-progress[hidden], .photo-arrow[hidden] { display: none; }
 
     .photo-status {
@@ -572,6 +577,7 @@
       display: grid;
       gap: 12px;
       padding: 48px 12px 8px;
+      background: linear-gradient(to top, rgba(9, 9, 11, 0.94), rgba(9, 9, 11, 0.8) calc(100% - 48px), transparent);
       pointer-events: none;
     }
 
@@ -712,7 +718,9 @@
     }
 
     .ticker {
-      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
       background: var(--primary);
@@ -721,22 +729,60 @@
 
     .ticker-track {
       display: flex;
-      width: max-content;
+      width: 100%;
     }
 
-    .ticker-track.is-ready {
+    .ticker.is-scrolling { flex-wrap: nowrap; }
+    .ticker.is-scrolling .ticker-track { width: max-content; }
+
+    .ticker.is-scrolling .ticker-track.is-ready {
       animation: ticker var(--ticker-duration) linear infinite;
+    }
+
+    .ticker.is-paused .ticker-track.is-ready { animation-play-state: paused; }
+
+    .ticker-viewport {
+      flex: 1 1 100%;
+      min-width: 0;
+      max-height: 16rem;
+      overflow-y: auto;
+      order: 1;
+    }
+
+    .ticker.is-scrolling .ticker-viewport {
+      flex-basis: auto;
+      max-height: none;
+      overflow: hidden;
+      order: 0;
+    }
+
+    .ticker-controls { display: flex; gap: 6px; padding: 8px 12px; }
+    .ticker-controls[hidden], .ticker-controls button[hidden] { display: none; }
+    .ticker-controls button {
+      min-width: 36px;
+      min-height: 36px;
+      padding: 8px;
+      border: 1px solid var(--bg);
+      background: var(--bg);
+      color: var(--primary);
+      font: 500 11px/1.2 var(--mono);
+      cursor: pointer;
     }
 
     .ticker-group {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      padding: 17px 0;
-      white-space: nowrap;
+      gap: 12px 0;
+      padding: 17px 12px;
     }
+
+    .ticker:not(.is-scrolling) .ticker-group[aria-hidden="true"] { display: none; }
+    .ticker.is-scrolling .ticker-group { flex-wrap: nowrap; padding: 17px 0; white-space: nowrap; }
 
     .ticker-item {
       display: inline-flex;
+      max-width: 100%;
       align-items: center;
       font: 400 24px/1 var(--display);
       letter-spacing: -0.02em;
@@ -744,6 +790,7 @@
     }
 
     .ticker-item::after {
+      flex-shrink: 0;
       width: 8px;
       height: 8px;
       margin: 0 30px;
@@ -798,7 +845,7 @@
 
     .statement-title .outline {
       color: transparent;
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
+      -webkit-text-stroke: 2px var(--muted);
     }
 
     .statement-copy p {
@@ -837,7 +884,7 @@
     .fact span {
       display: block;
       margin-top: 10px;
-      color: rgba(255, 255, 255, 0.42);
+      color: var(--muted);
       font: 500 8px/1.4 var(--mono);
       letter-spacing: 0.11em;
       text-transform: uppercase;
@@ -1118,7 +1165,7 @@
 
     .chat-time {
       align-self: flex-end;
-      color: rgba(255, 255, 255, 0.34);
+      color: var(--muted);
       font: 500 7px/1 var(--mono);
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -1174,7 +1221,7 @@
 
     .privacy-mark .coord {
       position: absolute;
-      color: rgba(255, 255, 255, 0.32);
+      color: var(--muted);
       font: 500 8px/1 var(--mono);
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -1316,7 +1363,7 @@
 
     .footer-heading {
       margin: 0 0 16px;
-      color: rgba(255, 255, 255, 0.38);
+      color: var(--muted);
       font: 500 9px/1 var(--mono);
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -1344,7 +1391,7 @@
       gap: 20px;
       padding-top: 25px;
       border-top: 1px solid var(--line);
-      color: rgba(255, 255, 255, 0.32);
+      color: var(--muted);
       font: 500 8px/1.4 var(--mono);
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -1482,6 +1529,7 @@
       .ticker-track { transform: none; }
     }
   </style>
+  <link rel="stylesheet" href="assets/accessibility.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -1517,10 +1565,10 @@
     </a>
   </nav>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy reveal is-visible">
-        <span class="eyebrow">Athletes near you</span>
+        <span class="eyebrow" lang="en">Athletes near you</span>
         <h1 class="hero-title" id="hero-title">
           Finde deinen<br>
           <span class="accent">Trainings</span><br>
@@ -1555,7 +1603,7 @@
               <button type="button" aria-label="Foto 2 von 3 anzeigen" aria-controls="profile-photos" aria-current="false"></button>
               <button type="button" aria-label="Foto 3 von 3 anzeigen" aria-controls="profile-photos" aria-current="false"></button>
             </div>
-            <button class="photo-arrow photo-arrow-prev" type="button" aria-label="Vorheriges Foto" aria-controls="profile-photos" hidden disabled><span aria-hidden="true">‹</span></button>
+            <button class="photo-arrow photo-arrow-prev" type="button" aria-label="Vorheriges Foto" aria-controls="profile-photos" aria-disabled="true" hidden><span aria-hidden="true">‹</span></button>
             <button class="photo-arrow photo-arrow-next" type="button" aria-label="Nächstes Foto" aria-controls="profile-photos" hidden><span aria-hidden="true">›</span></button>
             <span class="photo-status" role="status" aria-live="polite" aria-atomic="true">Foto 1 von 3</span>
             <div class="profile-copy">
@@ -1583,8 +1631,9 @@
     </section>
 
     <section class="ticker" aria-label="Sportarten bei Pace">
-      <div class="ticker-track">
-        <div class="ticker-group">
+      <div class="ticker-viewport" id="sports-list" tabindex="0" role="region" aria-label="Sportartenliste">
+        <div class="ticker-track">
+        <div class="ticker-group" lang="en">
           <span class="ticker-item" data-sport-id="running">Running</span>
           <span class="ticker-item" data-sport-id="cycling_road">Cycling — Road</span>
           <span class="ticker-item" data-sport-id="cycling_gravel">Cycling — Gravel</span>
@@ -1717,6 +1766,11 @@
           <span class="ticker-item" data-sport-id="darts">Darts</span>
           <span class="ticker-item" data-sport-id="disc_golf">Disc golf</span>
         </div>
+        </div>
+      </div>
+      <div class="ticker-controls" hidden>
+        <button class="ticker-pause" type="button" aria-label="Sportarten pausieren" title="Sportarten pausieren" aria-controls="sports-list">Ⅱ</button>
+        <button class="ticker-expand" type="button" aria-expanded="false" aria-controls="sports-list">Alle anzeigen</button>
       </div>
     </section>
 
@@ -1772,7 +1826,7 @@
     <section class="section features-section" id="features" aria-labelledby="features-title">
       <div class="section-header">
         <div class="reveal">
-          <span class="section-label">Built for movement</span>
+          <span class="section-label" lang="en">Built for movement</span>
           <h2 class="section-heading" id="features-title">Mehr Signal.<br>Weniger Scrollen.</h2>
         </div>
         <p class="section-intro reveal delay-1">
@@ -1783,7 +1837,7 @@
       <div class="feature-grid">
         <article class="feature-card feature-profile reveal">
           <div class="feature-card-copy">
-            <span class="micro-label">/ Your athlete profile</span>
+            <span class="micro-label" lang="en">/ Your athlete profile</span>
             <h3>Mehr als<br>ein Foto.</h3>
             <p>Zeig deine Disziplinen, dein Level und was dich antreibt. Ehrlich, kompakt und direkt.</p>
           </div>
@@ -1810,7 +1864,7 @@
 
         <article class="feature-card feature-location reveal delay-1">
           <div class="feature-card-copy">
-            <span class="micro-label">/ Nearby by design</span>
+            <span class="micro-label" lang="en">/ Nearby by design</span>
             <h3>Nah dran.<br>Nicht zu genau.</h3>
             <p>Andere sehen eine ungefähre Distanz – nicht deine exakten Koordinaten.</p>
           </div>
@@ -1823,7 +1877,7 @@
 
         <article class="feature-card feature-chat reveal delay-1">
           <div class="feature-card-copy">
-            <span class="micro-label">/ Private chat</span>
+            <span class="micro-label" lang="en">/ Private chat</span>
             <h3>Aus Match<br>wird Machen.</h3>
           </div>
           <div class="chat-ui" aria-hidden="true">
@@ -1843,7 +1897,7 @@
           <span class="coord bottom">Distance / approximate</span>
         </div>
         <div class="privacy-copy reveal delay-1">
-          <span class="section-label">Privacy in motion</span>
+          <span class="section-label" lang="en">Privacy in motion</span>
           <h2 id="privacy-title">Dein Standort.<br><span>Deine Sache.</span></h2>
           <p>Du bestimmst, wie weit du suchen möchtest. Deine genauen GPS-Daten bleiben geschützt; andere sehen nur eine ungefähre Entfernung.</p>
           <ul class="privacy-list">
@@ -1857,7 +1911,7 @@
     </section>
 
     <section class="final-cta reveal" aria-labelledby="cta-title">
-      <span class="section-label">Ready when you are</span>
+      <span class="section-label" lang="en">Ready when you are</span>
       <h2 class="cta-title" id="cta-title">Deine nächste Session beginnt mit einem Swipe.</h2>
       <div class="cta-bottom">
         <p>Profil erstellen. Menschen entdecken. Gemeinsam los.</p>
@@ -1876,7 +1930,7 @@
             <span class="brand-dot" aria-hidden="true"></span>
             <span>Pace</span>
           </a>
-          <p class="footer-tagline">Train together. Explore together. Get better together.</p>
+          <p class="footer-tagline" lang="en">Train together. Explore together. Get better together.</p>
         </div>
 
         <div>
@@ -1913,7 +1967,13 @@
       const mobileNav = document.getElementById("mobile-nav");
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-      const tickerTrack = document.querySelector(".ticker-track");
+      const ticker = document.querySelector(".ticker");
+      const tickerTrack = ticker.querySelector(".ticker-track");
+      const tickerPause = ticker.querySelector(".ticker-pause");
+      const tickerExpand = ticker.querySelector(".ticker-expand");
+      const tickerControls = ticker.querySelector(".ticker-controls");
+      let tickerPaused = false;
+      let tickerExpanded = false;
       const tickerGroup = tickerTrack.querySelector(".ticker-group");
       // Keep one source list; the hidden copy makes the scrolling loop seamless.
       const tickerCopy = tickerGroup.cloneNode(true);
@@ -1922,9 +1982,37 @@
 
       // Keep a readable, constant speed regardless of list length or screen size.
       const updateTickerDuration = () => {
+        if (!ticker.classList.contains("is-scrolling")) return;
         tickerTrack.style.setProperty("--ticker-duration", `${tickerGroup.getBoundingClientRect().width / 50}s`);
       };
-      updateTickerDuration();
+      const updateTicker = () => {
+        const expanded = tickerExpanded || reducedMotion.matches;
+        ticker.classList.toggle("is-scrolling", !expanded);
+        ticker.classList.toggle("is-paused", tickerPaused);
+        tickerPause.hidden = expanded;
+        tickerExpand.setAttribute("aria-expanded", String(expanded));
+        tickerExpand.textContent = expanded ? "Liste schließen" : "Alle anzeigen";
+        // Reduced motion and no-JS users get the complete, scrollable static list.
+        tickerControls.hidden = reducedMotion.matches;
+        updateTickerDuration();
+      };
+      tickerPause.addEventListener("click", () => {
+        tickerPaused = !tickerPaused;
+        const label = tickerPaused ? "Sportarten fortsetzen" : "Sportarten pausieren";
+        tickerPause.setAttribute("aria-label", label);
+        tickerPause.title = label;
+        tickerPause.textContent = tickerPaused ? "▶" : "Ⅱ";
+        updateTicker();
+      });
+      tickerExpand.addEventListener("click", () => {
+        tickerExpanded = !tickerExpanded;
+        updateTicker();
+      });
+      reducedMotion.addEventListener("change", () => {
+        if (tickerControls.contains(document.activeElement)) ticker.querySelector(".ticker-viewport").focus();
+        updateTicker();
+      });
+      updateTicker();
       tickerTrack.classList.add("is-ready");
       document.fonts.ready.then(updateTickerDuration);
       window.addEventListener("resize", updateTickerDuration, { passive: true });
@@ -1933,25 +2021,58 @@
       updateHeader();
       window.addEventListener("scroll", updateHeader, { passive: true });
 
+      const menuBackground = [
+        document.getElementById("main"), document.querySelector(".site-footer"),
+        document.querySelector(".skip-link"), ...header.querySelectorAll("a, .desktop-nav")
+      ];
       const setMenu = (open, restoreFocus = true) => {
+        const focusWasInMenu = mobileNav.contains(document.activeElement) || document.activeElement === menuButton;
         menuButton.setAttribute("aria-expanded", String(open));
         menuButton.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
         mobileNav.classList.toggle("is-open", open);
         mobileNav.hidden = !open;
         mobileNav.inert = !open;
         document.body.classList.toggle("menu-open", open);
+        menuBackground.forEach((element) => { element.inert = open; });
 
         if (open) {
-          requestAnimationFrame(() => mobileNav.querySelector("a")?.focus());
-        } else if (mobileNav.contains(document.activeElement)) {
+          mobileNav.querySelector("a").focus();
+        } else if (focusWasInMenu) {
           (restoreFocus ? menuButton : header.querySelector(".brand")).focus();
         }
       };
 
       menuButton.addEventListener("click", () => setMenu(menuButton.getAttribute("aria-expanded") !== "true"));
-      mobileNav.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
+      mobileNav.querySelectorAll("a").forEach((link) => link.addEventListener("click", (event) => {
+        setMenu(false);
+        if (link.hash && link.pathname === location.pathname) {
+          const target = document.getElementById(link.hash.slice(1));
+          if (target) {
+            event.preventDefault();
+            const heading = target.querySelector("h2") || target;
+            heading.setAttribute("tabindex", "-1");
+            heading.focus({ preventScroll: true });
+            target.scrollIntoView({ behavior: reducedMotion.matches ? "instant" : "smooth" });
+            history.replaceState(null, "", link.hash);
+          }
+        }
+      }));
       document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") setMenu(false);
+        if (menuButton.getAttribute("aria-expanded") !== "true") return;
+        if (event.key === "Escape") {
+          event.preventDefault();
+          setMenu(false);
+        }
+        if (event.key === "Tab") {
+          const lastLink = mobileNav.querySelector("a:last-child");
+          if (event.shiftKey && document.activeElement === menuButton) {
+            event.preventDefault();
+            lastLink.focus();
+          } else if (!event.shiftKey && document.activeElement === lastLink) {
+            event.preventDefault();
+            menuButton.focus();
+          }
+        }
       });
       window.addEventListener("resize", () => {
         if (window.innerWidth > 820) setMenu(false, false);
@@ -1986,8 +2107,9 @@
         profileCard.style.setProperty("--photo-index", photoIndex);
         photos.forEach((photo, index) => photo.setAttribute("aria-hidden", String(index !== photoIndex)));
         photoButtons.forEach((button, index) => button.setAttribute("aria-current", String(index === photoIndex)));
-        previousPhoto.disabled = photoIndex === 0;
-        nextPhoto.disabled = photoIndex === photos.length - 1;
+        // Keep focus on the arrow when reaching an end of the carousel.
+        previousPhoto.setAttribute("aria-disabled", String(photoIndex === 0));
+        nextPhoto.setAttribute("aria-disabled", String(photoIndex === photos.length - 1));
         photoStatus.textContent = `Foto ${photoIndex + 1} von ${photos.length}`;
       };
 
@@ -2036,7 +2158,7 @@
 
       if (!reducedMotion.matches && window.matchMedia("(pointer: fine)").matches) {
         visual.addEventListener("pointermove", (event) => {
-          if (photoGesture) return;
+          if (photoGesture || reducedMotion.matches) return;
           const rect = visual.getBoundingClientRect();
           const x = (event.clientX - rect.left) / rect.width - 0.5;
           const y = (event.clientY - rect.top) / rect.height - 0.5;

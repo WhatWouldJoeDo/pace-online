@@ -52,14 +52,17 @@
   .footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
   .footer-nav { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; }
 </style>
+<link rel="stylesheet" href="assets/accessibility.css">
 </head>
-<body>
+<body class="legal-page">
+<a class="skip-link" href="#main">Skip to content</a>
 <div class="wrap">
   <header class="legal-header">
     <a class="logo" href="index.html" aria-label="Pace home"><span class="dot"></span>Pace</a>
     <a class="home-link" href="index.html">← Back to Pace</a>
   </header>
 
+  <main id="main" tabindex="-1">
   <h1>Terms of <span>Service</span></h1>
   <p class="meta">Last updated: 17 August 2026</p>
 
@@ -161,15 +164,17 @@
     <a href="mailto:support@pace-online.de">support@pace-online.de</a>
   </p>
 
-  <div class="footer">
+  </main>
+
+  <footer class="footer">
     Pace — find your training partner. Train together, explore together, get better together.
     <nav class="footer-nav" aria-label="Legal pages">
-      <a href="impressum.html">Impressum</a>
+      <a href="impressum.html" lang="de">Impressum</a>
       <a href="index.html">Home</a>
       <a href="privacy.html">Privacy</a>
       <a href="delete-account.html">Delete account</a>
     </nav>
-  </div>
+  </footer>
 </div>
 </body>
 </html>
