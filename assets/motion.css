@@ -1,7 +1,7 @@
 /* Scroll effects are progressive enhancements. All content flows without JS. */
 .brand { gap: 8px; }
-.brand-icon { position: relative; display: block; width: 39px; height: 32px; overflow: hidden; flex: none; }
-.brand-icon img { position: absolute; width: 64px; height: 64px; max-width: none; left: -13px; top: -16px; mix-blend-mode: screen; }
+.brand-icon { position: relative; display: block; width: 44px; height: 32px; overflow: hidden; flex: none; }
+.brand-icon img { position: absolute; width: 64px; height: 64px; max-width: none; left: -11px; top: -15px; mix-blend-mode: screen; }
 .session-story { position: relative; margin: 0 16px; }
 .session-stage { position: relative; isolation: isolate; min-height: 650px; height: 85svh; max-height: 1000px; overflow: hidden; border-radius: 32px; background: #161a13; }
 .session-photo, .session-shade { position: absolute; inset: 0; z-index: -1; }

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Give the original Pace logo more room inside its crop so the entire mark remains visible in the header and footer.
+
 - Keep the privacy radar circular at every viewport size, place its labels inside the circle, and show three inset lime contact markers.
 - Lift the hero photo by 24 px and soften its upper fade while preserving headroom below the navigation.
 
