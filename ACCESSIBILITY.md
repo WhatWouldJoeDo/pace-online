@@ -1,5 +1,23 @@
 # Accessibility review
 
+## Scroll interaction update — 3 October 2026
+
+- Pinned scenes run only above 900 CSS px wide and at least 700 CSS px high. Mobile and short viewports use ordinary document flow; no wheel, touchmove or keyboard scrolling events are canceled by the motion layer.
+- Reduced motion (including a live preference change) removes pinning, zoom, clipping and dot physics. Without JavaScript, both the feature introduction and all feature cards remain visible in normal flow. Canvas dots are decorative and hidden from assistive technology.
+- The feature link bypasses the scroll sequence, focuses the feature grid, and supports a direct `#feature-details` URL/reload. Reverse scrolling restores the introduction and its link. The link becomes inert only while the feature panel covers it.
+- Verified pointer repulsion, click impulse, idle sleep, forward/reverse reveal, direct-link reload and live reduced-motion changes. Chromium reflow and axe WCAG checks passed at 1440 × 960, 1440 × 700, 901 × 700, 820 × 900, 600 × 900, 390 × 844, 320 × 800 and 640 × 256. This remains browser emulation, not a physical-device audit.
+
+## Landing-page redesign — 3 October 2026
+
+- Reviewed the rounded hero/navigation, new typography and section layout in Chromium at 320, 390, 600, 820 and 1440 CSS px. No text/section overflow after correcting the privacy-panel width.
+- Scrolled through every section before axe-core scans: no detected WCAG 2 A/AA, 2.1 AA or 2.2 AA violations at those widths. Visual checks included the desktop page, mobile hero and profile preview.
+- Verified anchor offsets, carousel arrow/keyboard boundaries, ticker pause, mobile-menu Escape/focus restoration and desktop-resize cleanup. A 640 × 256 viewport keeps the menu scrollable.
+- Chromium touch emulation verified horizontal photo swipes and vertical page scrolling over the carousel. Reduced motion exposes the static sports list; with JavaScript disabled, content and the full sports list remain available.
+- Reveals use a zero intersection threshold so tall cards work on short viewports. They are enabled only after JavaScript initializes, and are disabled by reduced-motion CSS. Pointer-driven card tilt was removed.
+- The following September review is historical. This redesign check is not a full screen-reader, physical-device or cross-browser conformance audit.
+
+## Previous review
+
 Reviewed on 18 September 2026. Scope: `index.html`, `privacy.html`,
 `terms.html`, `delete-account.html`, `impressum.html` and their shared styles.
 
