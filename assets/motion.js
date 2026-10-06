@@ -106,7 +106,7 @@
   }
   addEventListener('hashchange', restoreDetails);
 
-  cards.forEach(card => {
+  document.querySelectorAll('.feature-card, .together-preview').forEach(card => {
     card.addEventListener('pointermove', event => {
       if (!motionAllowed() || !finePointer.matches) return;
       const rect = card.getBoundingClientRect();

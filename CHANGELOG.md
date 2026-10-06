@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Point all seven former Lovable website links to the official Pace Linktree.
+
+- Introduce Pace Sessions and Pace Groups with public-session and private-club
+  previews, matching scroll reveals and pointer lighting, responsive layouts,
+  and navigation links. Explain requests/invitations and group privacy; broaden
+  the closing call to action beyond matching.
+
 - Add an independent group-invitation page at `/group-invite` that opens the
   existing Pace app deep link. Validate token format, retain explicit acceptance
   inside the app, and exclude the page from indexing and referrer sharing.
