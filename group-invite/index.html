@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#09090b">
+  <meta name="color-scheme" content="dark">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Gruppeneinladung — Pace</title>
+  <link rel="icon" href="/assets/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/assets/fonts/fonts.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #09090b; color: #fafafa; font-family: Inter, system-ui, sans-serif; line-height: 1.6; }
+    main { max-width: 480px; margin: 0 auto; padding: max(56px, env(safe-area-inset-top)) 24px max(40px, env(safe-area-inset-bottom)); }
+    .brand { color: #d9ff00; font-family: Anton, Impact, sans-serif; font-size: 26px; text-decoration: none; }
+    .card { margin-top: 40px; padding: 28px 24px; border: 1px solid #353539; border-radius: 20px; background: #0f0f12; }
+    h1 { margin: 0 0 20px; font-family: Anton, Impact, sans-serif; font-weight: 400; font-size: clamp(32px, 9vw, 44px); line-height: 1.1; text-transform: uppercase; }
+    p { margin: 0 0 20px; color: #bdbdbf; }
+    .button { display: flex; min-height: 52px; align-items: center; justify-content: center; margin: 24px 0 20px; padding: 12px 16px; border-radius: 12px; background: #d9ff00; color: #09090b; font-weight: 650; text-align: center; text-decoration: none; }
+    a:focus-visible { outline: 3px solid #fafafa; outline-offset: 5px; }
+    .button:active { background: #c3e600; }
+    .note { font-size: 13px; margin-bottom: 0; }
+    footer { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 28px; font-size: 13px; }
+    footer a { color: #bdbdbf; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="brand" href="/" aria-label="Pace Startseite">PACE</a>
+    <section class="card" aria-labelledby="title">
+      <h1 id="title">Deine Gruppe wartet.</h1>
+      <p id="status" role="status">Die Einladung wird geprüft …</p>
+      <a id="open-app" class="button" hidden>Einladung in Pace öffnen</a>
+      <p id="note" class="note" hidden>Falls Pace noch nicht installiert ist, installiere die App und öffne anschließend diesen Einladungslink erneut. Bei Bedarf meldest du dich in der App an, bevor du die Einladung annimmst.</p>
+      <noscript><p>Bitte aktiviere JavaScript, um diese Einladung in der Pace-App zu öffnen.</p></noscript>
+    </section>
+    <footer aria-label="Rechtliche Informationen">
+      <a href="/privacy">Datenschutz</a>
+      <a href="/impressum">Impressum</a>
+    </footer>
+  </main>
+  <script src="/assets/group-invite.js" defer></script>
+</body>
+</html>

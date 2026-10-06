@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Add an independent group-invitation page at `/group-invite` that opens the
+  existing Pace app deep link. Validate token format, retain explicit acceptance
+  inside the app, and exclude the page from indexing and referrer sharing.
+
 - Give the original Pace logo more room inside its crop so the entire mark remains visible in the header and footer.
 
 - Keep the privacy radar circular at every viewport size, place its labels inside the circle, and show three inset lime contact markers.
