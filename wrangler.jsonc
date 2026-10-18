@@ -1,0 +1,17 @@
+{
+  "name": "pace-online",
+  "compatibility_date": "2026-10-13",
+  "send_metrics": false,
+  "keep_vars": true,
+  "observability": { "enabled": false },
+  "main": "session-worker.mjs",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/session",
+      "/session/"
+    ],
+    "not_found_handling": "none"
+  }
+}

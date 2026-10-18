@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Fix shared session links at `/session?id=...` using the existing anonymous
+  preview API. Render WhatsApp title/description/image metadata server-side,
+  preserve private-group and exact-location restrictions, and open the same
+  session in Pace. Publish Android/iOS association files as JSON without
+  redirects. Keep the current static website and honest test-distribution state;
+  add no browser tracking or new provider. Public/private/error and mobile
+  no-JavaScript checks pass; signed-device verification remains a release check.
+
 - Point all seven former Lovable website links to the official Pace Linktree.
 
 - Introduce Pace Sessions and Pace Groups with public-session and private-club

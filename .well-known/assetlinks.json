@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.pace.sports.app",
+      "sha256_cert_fingerprints": [
+        "24:01:A8:C3:81:11:E4:91:5A:C7:1D:58:24:5E:52:A0:07:D9:66:DE:97:B3:3E:A9:04:DB:16:03:4C:8E:3F:AC"
+      ]
+    }
+  }
+]

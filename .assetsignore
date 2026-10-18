@@ -1,0 +1,25 @@
+# Only public pages and approved browser assets belong in the upload.
+*
+!index.html
+!privacy.html
+!terms.html
+!impressum.html
+!delete-account.html
+!group-invite/
+!group-invite/index.html
+!assets/
+!assets/**/
+!assets/**/*.css
+!assets/**/*.js
+!assets/**/*.png
+!assets/**/*.jpg
+!assets/**/*.jpeg
+!assets/**/*.webp
+!assets/**/*.svg
+!assets/**/*.ico
+!assets/**/*.woff
+!assets/**/*.woff2
+
+!.well-known/
+!.well-known/assetlinks.json
+!.well-known/apple-app-site-association
