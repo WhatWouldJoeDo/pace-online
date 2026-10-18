@@ -31,7 +31,7 @@ There is no cache-revocation or install-attribution service.
 The website publishes `/.well-known/assetlinks.json` and
 `/.well-known/apple-app-site-association` directly as JSON over HTTPS without
 redirects. They match the app's session path, package/bundle ID, supplied Apple
-Team ID and Android signing fingerprint. Signed app builds also need their
+Team ID and Android signing fingerprints (all four listed in Play Console). Signed app builds also need their
 existing manifest/entitlement enabled. A locally signed debug APK uses another
 certificate and is not automatically covered by the production fingerprint.
 The explicit `com.pace.sports.app://session?id=...` link remains a fallback.

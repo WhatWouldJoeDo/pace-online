@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Align Android App Links with all four signing fingerprints requested by Play
+  Console, retaining the original certificate and native package identity.
+
 - Fix shared session links at `/session?id=...` using the existing anonymous
   preview API. Render WhatsApp title/description/image metadata server-side,
   preserve private-group and exact-location restrictions, and open the same

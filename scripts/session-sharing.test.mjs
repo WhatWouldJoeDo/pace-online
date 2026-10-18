@@ -88,5 +88,7 @@ test("association files match the native session path and supplied signing ident
   assert.deepEqual(apple.applinks.details[0].components, [{ "/": "/session" }]);
   const android = JSON.parse(readFileSync(new URL("../.well-known/assetlinks.json", import.meta.url), "utf8"));
   assert.equal(android[0].target.package_name, "com.pace.sports.app");
+  assert.equal(android[0].target.sha256_cert_fingerprints.length, 4);
+  assert.ok(android[0].target.sha256_cert_fingerprints.every(value => /^([0-9A-F]{2}:){31}[0-9A-F]{2}$/.test(value)));
   assert.equal(android[0].target.sha256_cert_fingerprints[0], "24:01:A8:C3:81:11:E4:91:5A:C7:1D:58:24:5E:52:A0:07:D9:66:DE:97:B3:3E:A9:04:DB:16:03:4C:8E:3F:AC");
 });
