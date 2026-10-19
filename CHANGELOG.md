@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Use Connect and Teammates throughout the website, retaining Squad. Refresh
+  landing-page headlines and the app mockup; align terminology in privacy,
+  terms and account-deletion copy without changing their substantive provisions.
+
 - Align Android App Links with all four signing fingerprints requested by Play
   Console, retaining the original certificate and native package identity.
 
