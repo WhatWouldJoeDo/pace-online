@@ -1,61 +1,139 @@
 <!doctype html>
-<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"><title>Nutzungsbedingungen / Terms of Service — Pace</title>
-<style>body{margin:0;background:#09090b;color:#fafafa;font:16px/1.7 system-ui,sans-serif}main{max-width:720px;margin:auto;padding:32px 24px 80px}a{color:#d9ff00}nav{display:flex;flex-wrap:wrap;gap:20px}h1{font-size:2rem;line-height:1.2}h2{font-size:1.25rem;line-height:1.4}section{margin-top:32px;border-top:1px solid #27272a;padding-top:20px}article{margin-top:48px;overflow-wrap:anywhere}article+article{margin-top:80px}footer{margin-top:48px;border-top:1px solid #27272a;padding-top:20px}</style></head>
-<body><main><nav aria-label="Sprache und Navigation"><a href="#de">Deutsch</a><a href="#en">English</a><a href="https://pace-online.de">Pace</a></nav>
-<p>Johannes Rampp · <a href="mailto:support@pace-online.de">support@pace-online.de</a></p>
-<article id="de" lang="de"><h1>Nutzungsbedingungen</h1><p>20. Oktober 2026 · Version 2026-10-20</p><section id="de-acceptance"><h2>1. Vereinbarung und Geltungsbereich</h2><p>Diese Nutzungsbedingungen regeln die Nutzung von Pace, betrieben von Johannes Rampp. Bitte lies sie vor deiner Zustimmung. Die Registrierung und der Zugang zu den Community-Funktionen setzen deine ausdrückliche Zustimmung voraus. Wir speichern die akzeptierte Version, den Dokumentfingerabdruck, die Sprache, die Art der Bestätigung und den serverseitigen Zeitpunkt der Zustimmung zu deinem Konto.</p>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="description" content="Nutzungsbedingungen von Pace auf Deutsch und Englisch — Version 2026-10-20.">
+<title>Nutzungsbedingungen / Terms of Service — Pace</title>
+<link rel="icon" href="/assets/favicon.png" type="image/png">
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<style>
+  :root {
+    --bg: #09090b;
+    --fg: #fafafa;
+    --muted: #a1a1aa;
+    --accent: #d9ff00;
+    --border: #27272a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 56px 24px 120px; }
+  .legal-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .logo { display: flex; align-items: center; gap: 8px; color: var(--fg); font-family: Anton, Impact, sans-serif; font-weight: 400; text-transform: uppercase; text-decoration: none; letter-spacing: -0.02em; font-size: 24px; }
+  .logo:hover { text-decoration: none; }
+  .logo .dot { width: 12px; height: 12px; background: var(--accent); }
+  .home-link { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .home-link:hover { color: var(--accent); text-decoration: none; }
+  .language-nav { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 32px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; }
+  .language-nav a { display: inline-flex; align-items: center; min-height: 32px; }
+  h1 { font-family: Anton, Impact, sans-serif; font-size: 52px; font-weight: 400; line-height: 1; text-transform: uppercase; letter-spacing: -0.03em; margin: 24px 0 8px; }
+  h1 span { color: var(--accent); }
+  .meta { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); }
+  h2 { margin: 48px 0 12px; padding-top: 20px; border-top: 1px solid var(--border); font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; }
+  h2 span { color: var(--accent); }
+  p { margin: 0 0 14px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .terms-document { scroll-margin-top: 24px; }
+  .terms-document + .terms-document { margin-top: 80px; }
+  .footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+  .footer-nav { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 14px; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; }
+  @media (max-width: 380px) {
+    h1 { font-size: 44px; }
+  }
+</style>
+<link rel="stylesheet" href="/assets/accessibility.css">
+</head>
+<body class="legal-page">
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+<div class="wrap">
+<header class="legal-header">
+  <a class="logo" href="/" aria-label="Pace Startseite"><span class="dot" aria-hidden="true"></span>Pace</a>
+  <a class="home-link" href="/">← Zurück zu Pace</a>
+</header>
+<main id="main" tabindex="-1">
+<nav class="language-nav" aria-label="Sprache / Language"><a href="#de" lang="de">Deutsch</a><a href="#en" lang="en">English</a></nav>
+<article id="de" lang="de" class="terms-document">
+<h1>Nutzungs<wbr><span>bedingungen</span></h1>
+<p class="meta">20. Oktober 2026 · Version 2026-10-20</p>
+<section id="de-acceptance"><h2><span aria-hidden="true">/</span> 1. Vereinbarung und Geltungsbereich</h2><p>Diese Nutzungsbedingungen regeln die Nutzung von Pace, betrieben von Johannes Rampp. Bitte lies sie vor deiner Zustimmung. Die Registrierung und der Zugang zu den Community-Funktionen setzen deine ausdrückliche Zustimmung voraus. Wir speichern die akzeptierte Version, den Dokumentfingerabdruck, die Sprache, die Art der Bestätigung und den serverseitigen Zeitpunkt der Zustimmung zu deinem Konto.</p>
 <p>Die Bedingungen erfassen auch Aktivitäten, die über Groups, Sessions, Connections oder private Chats vereinbart werden. Die Datenschutzerklärung erläutert die Verarbeitung personenbezogener Daten gesondert. Die Zustimmung zu diesen Bedingungen ist keine Einwilligung in Werbung oder optionales Tracking.</p></section>
-<section id="de-service"><h2>2. Die Pace-Plattform</h2><p>Pace stellt technische Funktionen bereit, um Trainingspartner zu entdecken, Connect oder Pass zu wählen, Teammates zu werden, Nachrichten auszutauschen, Groups zu bilden und Sessions zu vereinbaren. Pace garantiert weder eine Connection noch die Teilnahme anderer Personen, eine bestimmte Aktivität oder einen Trainingserfolg.</p>
+<section id="de-service"><h2><span aria-hidden="true">/</span> 2. Die Pace-Plattform</h2><p>Pace stellt technische Funktionen bereit, um Trainingspartner zu entdecken, Connect oder Pass zu wählen, Teammates zu werden, Nachrichten auszutauschen, Groups zu bilden und Sessions zu vereinbaren. Pace garantiert weder eine Connection noch die Teilnahme anderer Personen, eine bestimmte Aktivität oder einen Trainingserfolg.</p>
 <p>Pace ist kein medizinischer Dienst, Coachingangebot oder Notfalldienst. Technische Vorschläge, Karten und Filter sind keine fachliche Beurteilung der Eignung oder Sicherheit einer Aktivität.</p></section>
-<section id="de-eligibility"><h2>3. Volljährigkeit und Konten</h2><p>Pace richtet sich an Erwachsene ab 18 Jahren. Es gibt keine obere Altersgrenze und keine Teilnahme Minderjähriger mit elterlicher Freigabe. Gib richtige Informationen an und korrigiere Fehler. Verhindert ein falsch eingegebenes Geburtsdatum den Zugang, kannst du dich für eine persönliche Prüfung an den Support wenden.</p>
+<section id="de-eligibility"><h2><span aria-hidden="true">/</span> 3. Volljährigkeit und Konten</h2><p>Pace richtet sich an Erwachsene ab 18 Jahren. Es gibt keine obere Altersgrenze und keine Teilnahme Minderjähriger mit elterlicher Freigabe. Gib richtige Informationen an und korrigiere Fehler. Verhindert ein falsch eingegebenes Geburtsdatum den Zugang, kannst du dich für eine persönliche Prüfung an den Support wenden.</p>
 <p>Nutze ein persönliches Konto, schütze deine Zugangsdaten und informiere den Support bei Verdacht auf Missbrauch. Die Verantwortung für einen Missbrauch richtet sich nach dem geltenden Recht. Diese Bedingungen machen dich nicht automatisch für jede Handlung über dein Konto haftbar.</p></section>
-<section id="de-sessions"><h2>4. Sessions, Groups und persönliche Treffen</h2><p>Über Pace vereinbarte Aktivitäten werden von den jeweiligen Nutzern eigenständig organisiert und durchgeführt. Dies gilt für öffentliche Sessions, Gruppenaktivitäten und über Connections oder private Nachrichten vereinbarte Treffen. Die bloße Bereitstellung der Plattform macht Pace nicht zum Veranstalter, zur Trainingsleitung oder zur Aufsicht dieser Aktivitäten.</p>
+<section id="de-sessions"><h2><span aria-hidden="true">/</span> 4. Sessions, Groups und persönliche Treffen</h2><p>Über Pace vereinbarte Aktivitäten werden von den jeweiligen Nutzern eigenständig organisiert und durchgeführt. Dies gilt für öffentliche Sessions, Gruppenaktivitäten und über Connections oder private Nachrichten vereinbarte Treffen. Die bloße Bereitstellung der Plattform macht Pace nicht zum Veranstalter, zur Trainingsleitung oder zur Aufsicht dieser Aktivitäten.</p>
 <p>Die tatsächlich organisierenden Personen tragen im Rahmen ihrer gesetzlichen Pflichten die Verantwortung für Planung und Durchführung. Dazu gehören die Auswahl von Treffpunkt, Route und Aktivität, die Kommunikation des Vorhabens sowie die Beachtung erforderlicher Erlaubnisse und örtlicher Regeln. Die Bezeichnung Host kennzeichnet das Konto, das eine Session verwaltet. Die rechtliche Verantwortung richtet sich nach den tatsächlichen Umständen.</p>
 <p>Teilnehmende entscheiden eigenverantwortlich, ob eine Aktivität ihren Fähigkeiten und ihrem Gesundheitszustand entspricht. Stimmt Einzelheiten direkt ab, berücksichtigt Wetter, Ausrüstung und örtliche Bedingungen und trefft angemessene Vorsichtsmaßnahmen beim Kennenlernen. Gesetzliche Verantwortlichkeiten und Rechte der Organisierenden und Teilnehmenden bleiben unberührt.</p>
 <p>Pace beaufsichtigt diese von Nutzern organisierten Treffen nicht und stellt im Rahmen des Plattformangebots keine Unfallversicherung für Teilnehmende bereit. Übernimmt Pace bei einer bestimmten Aktivität selbst organisatorische Aufgaben, schließt dieser Abschnitt eine daraus entstehende Verantwortung nicht aus.</p></section>
-<section id="de-conduct"><h2>5. Respektvolle und rechtmäßige Nutzung</h2><p>Belästige, bedrohe oder diskriminiere niemanden. Veröffentliche keine rechtswidrigen oder sexuell expliziten Inhalte, täusche keine fremde Identität vor, versende keinen Spam, sammle keine personenbezogenen Daten durch Scraping und versuche keine unbefugten Zugriffe. Veröffentliche nur Inhalte, zu deren Nutzung du berechtigt bist. Organisiere über Pace keine rechtswidrigen Aktivitäten.</p>
+<section id="de-conduct"><h2><span aria-hidden="true">/</span> 5. Respektvolle und rechtmäßige Nutzung</h2><p>Belästige, bedrohe oder diskriminiere niemanden. Veröffentliche keine rechtswidrigen oder sexuell expliziten Inhalte, täusche keine fremde Identität vor, versende keinen Spam, sammle keine personenbezogenen Daten durch Scraping und versuche keine unbefugten Zugriffe. Veröffentliche nur Inhalte, zu deren Nutzung du berechtigt bist. Organisiere über Pace keine rechtswidrigen Aktivitäten.</p>
 <p>Nutze bei Bedarf die Melde- und Blockierfunktionen oder kontaktiere den Support. Wende dich bei unmittelbarer Gefahr an die zuständigen Notfalldienste. Meldungen und Moderation bedeuten keine Beaufsichtigung der sportlichen Aktivität durch Pace.</p></section>
-<section id="de-content"><h2>6. Deine Inhalte</h2><p>Du behältst deine Rechte an Profil, Fotos, Nachrichten und sonstigen Inhalten. Du räumst Pace die nicht ausschließliche Erlaubnis ein, diese Inhalte für den Betrieb der von dir genutzten Funktionen zu speichern, technisch zu verarbeiten und entsprechend deinen Einstellungen und der Datenschutzerklärung anzuzeigen. Diese Bedingungen übertragen kein Eigentum und erlauben keine davon unabhängige Werbenutzung.</p>
+<section id="de-content"><h2><span aria-hidden="true">/</span> 6. Deine Inhalte</h2><p>Du behältst deine Rechte an Profil, Fotos, Nachrichten und sonstigen Inhalten. Du räumst Pace die nicht ausschließliche Erlaubnis ein, diese Inhalte für den Betrieb der von dir genutzten Funktionen zu speichern, technisch zu verarbeiten und entsprechend deinen Einstellungen und der Datenschutzerklärung anzuzeigen. Diese Bedingungen übertragen kein Eigentum und erlauben keine davon unabhängige Werbenutzung.</p>
 <p>Respektiere die Rechte und Privatsphäre anderer. Inhalte oder Zugänge können eingeschränkt werden, soweit dies zur Behandlung rechtswidriger Inhalte, von Verstößen gegen diese Bedingungen oder von Sicherheitsproblemen erforderlich ist. Gesetzliche Informations-, Begründungs- und Beschwerderechte bleiben unberührt.</p></section>
-<section id="de-payment"><h2>7. Kostenlose Nutzung und mögliche kostenpflichtige Angebote</h2><p>Im aktuellen kostenlosen Release sind weder Pace-Pro-Käufe noch Werbung im Feed aktiviert. Übliche Begrenzungen, insbesondere tägliche Like-Limits, können gelten. Das Erreichen eines Limits erlaubt keine Abbuchung und verpflichtet nicht zu einem Kauf.</p>
+<section id="de-payment"><h2><span aria-hidden="true">/</span> 7. Kostenlose Nutzung und mögliche kostenpflichtige Angebote</h2><p>Im aktuellen kostenlosen Release sind weder Pace-Pro-Käufe noch Werbung im Feed aktiviert. Übliche Begrenzungen, insbesondere tägliche Like-Limits, können gelten. Das Erreichen eines Limits erlaubt keine Abbuchung und verpflichtet nicht zu einem Kauf.</p>
 <p>Ein späteres kostenpflichtiges Angebot setzt eine gesonderte, klar dargestellte Kaufentscheidung mit Preis, Abrechnungszeitraum und den geltenden Bedingungen voraus. Diese Nutzungsbedingungen erlauben keine zukünftigen Abbuchungen.</p>
 <p>Sollte ein Abonnement aus einer älteren Version bestehen, wird es weiterhin über den jeweiligen Apple- oder Google-Store verwaltet. Die Installation einer kostenlosen Version oder die Löschung eines Pace-Kontos kündigt dieses Abonnement nicht automatisch. Nutze die Kündigungs- oder Erstattungsmöglichkeiten des Stores oder wende dich an den Pace-Support. Zwingende Rechte gegenüber dem verantwortlichen Vertragspartner bleiben unberührt.</p></section>
-<section id="de-liability"><h2>8. Haftung und gesetzliche Rechte</h2><p>Die Haftung von Pace für eigene Pflichtverletzungen richtet sich nach dem geltenden Recht. Diese Bedingungen enthalten keinen pauschalen Haftungsausschluss und keine Begrenzung auf geleistete Abonnementzahlungen.</p>
+<section id="de-liability"><h2><span aria-hidden="true">/</span> 8. Haftung und gesetzliche Rechte</h2><p>Die Haftung von Pace für eigene Pflichtverletzungen richtet sich nach dem geltenden Recht. Diese Bedingungen enthalten keinen pauschalen Haftungsausschluss und keine Begrenzung auf geleistete Abonnementzahlungen.</p>
 <p>Insbesondere wird die Haftung für Vorsatz, grobe Fahrlässigkeit und schuldhaft verursachte Schäden aus der Verletzung von Leben, Körper oder Gesundheit durch diese Bedingungen weder ausgeschlossen noch beschränkt. Zwingender Verbraucherschutz, Rechte wegen Mängeln digitaler Dienste und weitere gesetzlich nicht abdingbare Rechte bleiben unberührt.</p>
 <p>Die Rollenverteilung bei von Nutzern organisierten Aktivitäten in Abschnitt 4 schließt weder eine Haftung von Pace für eigene Pflichtverletzungen aus noch bedeutet sie einen Verzicht auf Ansprüche gegen Organisierende oder andere Teilnehmende.</p></section>
-<section id="de-termination"><h2>9. Nutzungsende und Kontolöschung</h2><p>Du kannst die Nutzung von Pace jederzeit beenden und die Kontolöschung in der App unter Profil, Profil bearbeiten, Konto löschen oder über die Kontolöschungsseite auf pace-online.de anfordern. Du musst keiner neuen Version der Nutzungsbedingungen zustimmen, um die Löschung zu verlangen oder Datenschutzrechte auszuüben. Wende dich bei fehlendem App-Zugang an den Support.</p>
+<section id="de-termination"><h2><span aria-hidden="true">/</span> 9. Nutzungsende und Kontolöschung</h2><p>Du kannst die Nutzung von Pace jederzeit beenden und die Kontolöschung in der App unter Profil, Profil bearbeiten, Konto löschen oder über die Kontolöschungsseite auf pace-online.de anfordern. Du musst keiner neuen Version der Nutzungsbedingungen zustimmen, um die Löschung zu verlangen oder Datenschutzrechte auszuüben. Wende dich bei fehlendem App-Zugang an den Support.</p>
 <p>Pace kann Zugänge im gesetzlich zulässigen Rahmen einschränken oder beenden, insbesondere bei schwerwiegenden Verstößen oder Sicherheitsgründen. Zwingende Informations-, Beschwerde-, Kündigungs- und Erstattungsrechte bleiben unberührt. Die Aufbewahrung und Löschung personenbezogener Daten erläutert die Datenschutzerklärung.</p></section>
-<section id="de-changes"><h2>10. Änderungen dieser Bedingungen</h2><p>Vorgeschlagene wesentliche Änderungen werden erläutert und vor ihrer vorgesehenen Geltung zugänglich gemacht. Soweit eine Zustimmung erforderlich ist, bittet Pace um ausdrückliche Zustimmung zur bezeichneten Version. Die bloße Weiternutzung gilt nicht als pauschale Annahme geänderter Vertragspflichten.</p>
+<section id="de-changes"><h2><span aria-hidden="true">/</span> 10. Änderungen dieser Bedingungen</h2><p>Vorgeschlagene wesentliche Änderungen werden erläutert und vor ihrer vorgesehenen Geltung zugänglich gemacht. Soweit eine Zustimmung erforderlich ist, bittet Pace um ausdrückliche Zustimmung zur bezeichneten Version. Die bloße Weiternutzung gilt nicht als pauschale Annahme geänderter Vertragspflichten.</p>
 <p>Welche Folgen die Ablehnung einer vorgeschlagenen Änderung hat, richtet sich nach dem geltenden Recht und der bestehenden Vereinbarung. Die Ablehnung bedeutet für sich genommen weder einen Verzicht auf bestehende Rechte noch eine Erlaubnis zur Kontolöschung. Zukünftige kostenpflichtige Dienste setzen eine gesonderte Kaufentscheidung voraus.</p></section>
-<section id="de-law"><h2>11. Anwendbares Recht</h2><p>Es gilt deutsches Recht unter Wahrung zwingender Verbraucherschutzvorschriften deines gewöhnlichen Aufenthaltsstaats. Die gerichtliche Zuständigkeit richtet sich nach den gesetzlichen Regeln. Diese Bedingungen begründen keinen ausschließlichen deutschen Gerichtsstand für Verbraucher.</p>
+<section id="de-law"><h2><span aria-hidden="true">/</span> 11. Anwendbares Recht</h2><p>Es gilt deutsches Recht unter Wahrung zwingender Verbraucherschutzvorschriften deines gewöhnlichen Aufenthaltsstaats. Die gerichtliche Zuständigkeit richtet sich nach den gesetzlichen Regeln. Diese Bedingungen begründen keinen ausschließlichen deutschen Gerichtsstand für Verbraucher.</p>
 <p>Werden Bestimmungen nicht Vertragsbestandteil oder sind sie unwirksam, richten sich die Folgen nach dem geltenden Gesetz, insbesondere nach § 306 BGB, soweit anwendbar.</p></section>
-<section id="de-contact"><h2>12. Kontakt</h2><p>Betreiber: Johannes Rampp. Kontakt: support@pace-online.de. Das Impressum ist unter https://pace-online.de/impressum.html abrufbar.</p></section></article><article id="en" lang="en"><h1>Terms of Service</h1><p>20 October 2026 · Version 2026-10-20</p><section id="en-acceptance"><h2>1. Agreement and scope</h2><p>These Terms govern your use of Pace, operated by Johannes Rampp. Please read them before agreeing. Registration and access to the community features require your express agreement. We record the accepted version, document fingerprint, language, method and the server time of acceptance for your account.</p>
+<section id="de-contact"><h2><span aria-hidden="true">/</span> 12. Kontakt</h2><p>Betreiber: Johannes Rampp. Kontakt: support@pace-online.de. Das Impressum ist unter https://pace-online.de/impressum.html abrufbar.</p></section>
+</article><article id="en" lang="en" class="terms-document">
+<h1>Terms of <span>Service</span></h1>
+<p class="meta">20 October 2026 · Version 2026-10-20</p>
+<section id="en-acceptance"><h2><span aria-hidden="true">/</span> 1. Agreement and scope</h2><p>These Terms govern your use of Pace, operated by Johannes Rampp. Please read them before agreeing. Registration and access to the community features require your express agreement. We record the accepted version, document fingerprint, language, method and the server time of acceptance for your account.</p>
 <p>These Terms also cover activities arranged through Groups, Sessions, Connections and private chats. The privacy notice separately explains personal-data processing; agreeing to these Terms is not consent to advertising or optional tracking.</p></section>
-<section id="en-service"><h2>2. The Pace platform</h2><p>Pace provides technical features to discover training partners, choose Connect or Pass, become teammates, exchange messages, form Groups and arrange Sessions. Pace does not guarantee a connection, attendance, availability of a particular activity or a training result.</p>
+<section id="en-service"><h2><span aria-hidden="true">/</span> 2. The Pace platform</h2><p>Pace provides technical features to discover training partners, choose Connect or Pass, become teammates, exchange messages, form Groups and arrange Sessions. Pace does not guarantee a connection, attendance, availability of a particular activity or a training result.</p>
 <p>Pace is not a medical service, coaching service or emergency service. Technical suggestions, maps and filters do not constitute a professional assessment of an activity&#39;s suitability or safety.</p></section>
-<section id="en-eligibility"><h2>3. Adults and accounts</h2><p>Pace is for adults aged 18 or older. There is no upper admission age and no parental-permission route for minors. Provide accurate information and correct mistakes. If an incorrect birth date prevents access, contact support for a personal review.</p>
+<section id="en-eligibility"><h2><span aria-hidden="true">/</span> 3. Adults and accounts</h2><p>Pace is for adults aged 18 or older. There is no upper admission age and no parental-permission route for minors. Provide accurate information and correct mistakes. If an incorrect birth date prevents access, contact support for a personal review.</p>
 <p>Use one personal account, protect your login credentials and notify support of suspected misuse. Responsibility for misuse is determined by the applicable law; these Terms do not make you automatically liable for every action performed through your account.</p></section>
-<section id="en-sessions"><h2>4. Sessions, Groups and personal meetings</h2><p>Activities arranged through Pace are independently organized and carried out by the users concerned. This applies to public Sessions, group activities and meetings arranged through Connections or private messages. Merely providing the platform does not make Pace the organizer, training instructor or supervisor of these activities.</p>
+<section id="en-sessions"><h2><span aria-hidden="true">/</span> 4. Sessions, Groups and personal meetings</h2><p>Activities arranged through Pace are independently organized and carried out by the users concerned. This applies to public Sessions, group activities and meetings arranged through Connections or private messages. Merely providing the platform does not make Pace the organizer, training instructor or supervisor of these activities.</p>
 <p>The persons who actually organize an activity are responsible for its planning and conduct within the duties imposed on them by law. This includes choosing the meeting place, route and activity, communicating the plan and observing applicable permissions and local rules. A Host label identifies the account managing a Session; legal responsibility depends on the actual circumstances.</p>
 <p>Participants independently decide whether an activity suits their abilities and health. Agree the details directly, consider weather, equipment and local conditions, and take reasonable precautions when meeting others. The legal responsibilities and rights of organizers and participants remain unaffected.</p>
 <p>Pace does not supervise these user-organized meetings. If Pace itself takes on an organizational role for a particular activity, this section does not exclude responsibility arising from that role.</p></section>
-<section id="en-conduct"><h2>5. Respectful and lawful use</h2><p>Do not harass, threaten or discriminate against others, publish unlawful or sexually explicit content, impersonate another person, send spam, scrape personal data or attempt unauthorized access. Only publish content you are entitled to use. Do not use Pace to organize unlawful activities.</p>
+<section id="en-conduct"><h2><span aria-hidden="true">/</span> 5. Respectful and lawful use</h2><p>Do not harass, threaten or discriminate against others, publish unlawful or sexually explicit content, impersonate another person, send spam, scrape personal data or attempt unauthorized access. Only publish content you are entitled to use. Do not use Pace to organize unlawful activities.</p>
 <p>Use the reporting and blocking functions or contact support when appropriate. For immediate danger, contact the relevant emergency services. Reports and moderation do not mean that Pace supervises the sporting activity itself.</p></section>
-<section id="en-content"><h2>6. Your content</h2><p>You retain your rights in your profile, photos, messages and other content. You grant Pace the non-exclusive permission necessary to store, technically process and display that content to operate the features you use, in accordance with your settings and the privacy notice. These Terms do not transfer ownership or authorize unrelated advertising use.</p>
+<section id="en-content"><h2><span aria-hidden="true">/</span> 6. Your content</h2><p>You retain your rights in your profile, photos, messages and other content. You grant Pace the non-exclusive permission necessary to store, technically process and display that content to operate the features you use, in accordance with your settings and the privacy notice. These Terms do not transfer ownership or authorize unrelated advertising use.</p>
 <p>Respect the rights and privacy of other users. Content or access may be restricted where necessary to address unlawful content, breaches of these Terms or security issues. Applicable notice, explanation and complaint rights remain unaffected.</p></section>
-<section id="en-payment"><h2>7. Free use and any paid offers</h2><p>The current free release has no Pace Pro purchases or feed advertising enabled. Normal limits, including daily like limits, may apply. Reaching a limit does not authorize a charge or require a purchase.</p>
+<section id="en-payment"><h2><span aria-hidden="true">/</span> 7. Free use and any paid offers</h2><p>The current free release has no Pace Pro purchases or feed advertising enabled. Normal limits, including daily like limits, may apply. Reaching a limit does not authorize a charge or require a purchase.</p>
 <p>Any later paid offer requires a separate, clearly presented purchase decision stating the price, billing period and applicable conditions. These Terms do not authorize future charges.</p>
 <p>If a subscription from an older version exists, it remains managed through the relevant Apple or Google store. Installing a free build or deleting a Pace account does not itself cancel that subscription. Use the store&#39;s cancellation or refund process or contact Pace support. Mandatory rights against the responsible contracting party remain unaffected.</p></section>
-<section id="en-liability"><h2>8. Liability and statutory rights</h2><p>Pace&#39;s liability for its own breaches of duty is governed by applicable law. These Terms impose no blanket exclusion of liability and no limit based on the amount of subscription payments.</p>
+<section id="en-liability"><h2><span aria-hidden="true">/</span> 8. Liability and statutory rights</h2><p>Pace&#39;s liability for its own breaches of duty is governed by applicable law. These Terms impose no blanket exclusion of liability and no limit based on the amount of subscription payments.</p>
 <p>In particular, liability for intent, gross negligence and culpably caused injury to life, body or health is not excluded or limited by these Terms. Mandatory consumer protections, rights relating to defects in digital services and other non-excludable statutory rights remain unaffected.</p>
 <p>The allocation of roles for user-organized activities in section 4 does not exclude Pace&#39;s liability for its own breaches of duty, nor does it waive claims against organizers or other participants.</p></section>
-<section id="en-termination"><h2>9. Ending use and deleting your account</h2><p>You can stop using Pace and request account deletion in the app under Profile, Edit profile, Delete account, or through the account-deletion page on pace-online.de. You do not need to agree to a new Terms version to request deletion or exercise data-protection rights; contact support if you cannot access the app.</p>
+<section id="en-termination"><h2><span aria-hidden="true">/</span> 9. Ending use and deleting your account</h2><p>You can stop using Pace and request account deletion in the app under Profile, Edit profile, Delete account, or through the account-deletion page on pace-online.de. You do not need to agree to a new Terms version to request deletion or exercise data-protection rights; contact support if you cannot access the app.</p>
 <p>Pace may restrict or end access where permitted by law, including for serious violations or security reasons. Mandatory information, complaint, termination and refund rights remain unaffected. Personal-data retention and deletion are explained in the privacy notice.</p></section>
-<section id="en-changes"><h2>10. Changes to these Terms</h2><p>Proposed material changes will be explained and made available before they are intended to apply. Where agreement is required, Pace will request express agreement to the identified version. Continued use alone is not deemed blanket acceptance of changed contractual obligations.</p>
+<section id="en-changes"><h2><span aria-hidden="true">/</span> 10. Changes to these Terms</h2><p>Proposed material changes will be explained and made available before they are intended to apply. Where agreement is required, Pace will request express agreement to the identified version. Continued use alone is not deemed blanket acceptance of changed contractual obligations.</p>
 <p>The applicable law and the existing agreement determine what happens if you decline a proposed change. Declining does not by itself waive your existing rights or authorize deletion of your account. Future paid services require a separate purchase decision.</p></section>
-<section id="en-law"><h2>11. Applicable law</h2><p>German law applies subject to mandatory consumer protections that apply in your country of habitual residence. Jurisdiction is determined by the applicable statutory rules; these Terms do not establish an exclusive German court for consumer disputes.</p>
+<section id="en-law"><h2><span aria-hidden="true">/</span> 11. Applicable law</h2><p>German law applies subject to mandatory consumer protections that apply in your country of habitual residence. Jurisdiction is determined by the applicable statutory rules; these Terms do not establish an exclusive German court for consumer disputes.</p>
 <p>If a provision is not incorporated or is invalid, the consequences follow the applicable statutory rules, including section 306 of the German Civil Code where applicable.</p></section>
-<section id="en-contact"><h2>12. Contact</h2><p>Operator: Johannes Rampp. Contact: support@pace-online.de. The operator&#39;s legal notice is available at https://pace-online.de/impressum.html.</p></section></article>
-<footer><nav aria-label="Rechtliches"><a href="https://pace-online.de/privacy">Datenschutz / Privacy</a><a href="https://pace-online.de/impressum.html">Impressum</a><a href="https://pace-online.de/delete-account.html">Konto löschen / Delete account</a></nav></footer>
+<section id="en-contact"><h2><span aria-hidden="true">/</span> 12. Contact</h2><p>Operator: Johannes Rampp. Contact: support@pace-online.de. The operator&#39;s legal notice is available at https://pace-online.de/impressum.html.</p></section>
+</article>
+</main>
+<footer class="footer">
+  <p lang="en">Pace — find your training partner. Train together, explore together, get better together.</p>
+  <nav class="footer-nav" aria-label="Rechtliches">
+    <a href="/impressum">Impressum</a>
+    <a href="/">Home</a>
+    <a href="/privacy">Datenschutz / Privacy</a>
+    <a href="/delete-account">Konto löschen / Delete account</a>
+  </nav>
+</footer>
 <!-- Archived document SHA-256: e1283d51ed968bfe95e32a8b64b2bb6afa9a08b899dbbea274f9b67b8897a4eb -->
-</main></body></html>
+</div>
+</body>
+</html>

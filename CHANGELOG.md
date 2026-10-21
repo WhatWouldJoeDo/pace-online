@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Match the bilingual Terms and versioned archive to the existing legal-page
+  design: local Inter/Anton/JetBrains Mono fonts, lime headings, consistent
+  content width, header/footer and accessible mobile navigation. Preserve the
+  accepted wording, version and document fingerprint; no renewed consent.
+
 - Publish bilingual Terms version 2026-10-20 and its immutable archive, matching
   the app's accepted document. Clarify member-organized Sessions, Groups and
   personal meetings while retaining statutory liability and consumer rights.
