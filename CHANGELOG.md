@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Publish bilingual Terms version 2026-10-20 and its immutable archive, matching
+  the app's accepted document. Clarify member-organized Sessions, Groups and
+  personal meetings while retaining statutory liability and consumer rights.
+  Add the minimal Terms-receipt privacy description and align the minimum age
+  with the adult-only Terms. This targeted update excludes the separate local
+  privacy/security/site drafts and does not constitute their legal approval.
+
 - Use Connect and Teammates throughout the website, retaining Squad. Refresh
   landing-page headlines and the app mockup; align terminology in privacy,
   terms and account-deletion copy without changing their substantive provisions.
